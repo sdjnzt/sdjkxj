@@ -893,8 +893,8 @@ const ComprehensiveManagement: React.FC<{ setActiveTab: (tab: string) => void }>
   useEffect(() => {
     // 模拟KPI数据
     setKpiData({
-      totalEmployees: users.length,
-      onlineEmployees: users.filter(u => u.status === 'online').length,
+      totalEmployees: 312, // 固定显示为三百多人
+      onlineEmployees: 287, // 固定显示在线人数
       totalDevices: devices.length,
       onlineDevices: devices.filter(d => d.status === 'online').length,
       activeAlerts: 3,

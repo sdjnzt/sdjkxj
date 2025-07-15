@@ -140,8 +140,8 @@ const OrganizationManagement: React.FC = () => {
   };
 
   // 统计数据
-  const totalUsers = users.length;
-  const onlineUsers = users.filter(u => u.status === 'online').length;
+  const totalUsers = 312; // 固定显示为三百多人
+  const onlineUsers = 287; // 固定显示在线人数
   const busyUsers = users.filter(u => u.status === 'busy').length;
   const offlineUsers = users.filter(u => u.status === 'offline').length;
   const totalUnits = organizationUnits.length + organizationUnits.reduce((sum, unit) => sum + (unit.children?.length || 0), 0);
@@ -372,7 +372,7 @@ const OrganizationManagement: React.FC = () => {
                         <Card>
                           <Statistic
                             title="总人数"
-                            value={selectedUnitInfo.memberCount}
+                            value={`${selectedUnitInfo.memberCount}（全司312人）`}
                             valueStyle={{ color: '#3f8600' }}
                             prefix={<UserOutlined />}
                           />
