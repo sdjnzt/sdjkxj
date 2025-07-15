@@ -118,7 +118,8 @@ const AppLayout: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          selectedKeys={[location.pathname]}
+          selectedKeys={[location.pathname === '/' ? '/' : location.pathname]}
+          defaultSelectedKeys={['/']}
           items={menuItems}
           onClick={({ key }) => {
             navigate(key);
@@ -173,6 +174,7 @@ const AppLayout: React.FC = () => {
             <Route path="/organization" element={<OrganizationManagement />} />
             <Route path="/erp-platform" element={<ERPPlatform />} />
             <Route path="/system-settings" element={<SystemSettings />} />
+            <Route path="*" element={<Dashboard />} />
           </Routes>
         </Content>
       </Layout>
@@ -182,7 +184,7 @@ const AppLayout: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/sdjkxj">
       <AppLayout />
     </Router>
   );
