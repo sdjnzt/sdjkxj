@@ -23,7 +23,8 @@ import {
   Popconfirm,
   InputNumber,
   Radio,
-  Table
+  Table,
+  Form
 } from 'antd';
 import { 
   ControlOutlined, 
@@ -98,6 +99,10 @@ const RemoteControl: React.FC = () => {
   const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [activeTab, setActiveTab] = useState('control');
   const [isEmergencyMode, setIsEmergencyMode] = useState(false);
+  const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
+  const [selectedCamera, setSelectedCamera] = useState<any>(null);
+  const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
   
   // 设备分组
   const [deviceGroups] = useState<DeviceGroup[]>([
@@ -227,6 +232,29 @@ const RemoteControl: React.FC = () => {
       critical: true
     });
   };
+
+  // 查看摄像头视频
+  const handleViewVideo = (device: any) => {
+    setSelectedCamera(device);
+    setIsVideoModalVisible(true);
+  };
+
+  // 打开摄像头设置
+  const handleOpenSettings = () => {
+    console.log('设置按钮被点击');
+    console.log('当前 isSettingsModalVisible:', isSettingsModalVisible);
+    setIsSettingsModalVisible(true);
+    console.log('isSettingsModalVisible 设置为 true');
+  };
+
+  // 实时更新时间
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // 每秒更新一次
+
+    return () => clearInterval(timer);
+  }, []);
 
   // 系统状态统计
   const systemStats = {
@@ -599,11 +627,24 @@ const RemoteControl: React.FC = () => {
               )}
 
                     <div style={{ marginTop: 12, display: 'flex', gap: 8 }}>
-                      <Button size="small" icon={<SettingOutlined />} style={{ flex: 1 }}>
+                      <Button 
+                        size="small" 
+                        icon={<SettingOutlined />} 
+                        style={{ flex: 1 }}
+                        onClick={() => {
+                          setSelectedCamera(device);
+                          setIsSettingsModalVisible(true);
+                        }}
+                      >
                         设置
                       </Button>
                       {device.type === 'camera' && (
-                        <Button size="small" icon={<EyeOutlined />} style={{ flex: 1 }}>
+                        <Button 
+                          size="small" 
+                          icon={<EyeOutlined />} 
+                          style={{ flex: 1 }}
+                          onClick={() => handleViewVideo(device)}
+                        >
                           查看
                         </Button>
                       )}
@@ -710,6 +751,359 @@ const RemoteControl: React.FC = () => {
           </TabPane>
         </Tabs>
       </Card>
+
+      {/* 摄像头视频查看模态框 */}
+      <Modal
+        title={
+          <Space>
+            <VideoCameraOutlined />
+            {selectedCamera?.name} - 实时监控
+          </Space>
+        }
+        visible={isVideoModalVisible}
+        onCancel={() => setIsVideoModalVisible(false)}
+        width={800}
+        footer={[
+          <Button key="close" onClick={() => setIsVideoModalVisible(false)}>
+            关闭
+          </Button>
+        ]}
+      >
+        {selectedCamera && (
+          <div>
+            {/* 视频播放区域 */}
+            <div style={{
+              width: '100%',
+              height: 400,
+              background: '#000',
+              borderRadius: 8,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 16,
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              {/* 监控图片显示 */}
+              <div style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: 8,
+                position: 'relative',
+                border: '2px solid #333',
+                overflow: 'hidden'
+              }}>
+                <img 
+                  src={process.env.PUBLIC_URL + '/images/monitor/building.png'}
+                  alt="监控画面"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
+                  onError={(e) => {
+                    console.error('图片加载失败，尝试备用路径:', e);
+                    // 尝试备用路径
+                    const img = e.currentTarget;
+                    if (img.src.includes('PUBLIC_URL')) {
+                      img.src = './images/monitor/building.png';
+                    } else if (img.src.includes('./images')) {
+                      img.src = '../images/monitor/building.png';
+                    } else {
+                      img.src = '/images/monitor/building.png';
+                    }
+                  }}
+                />
+                {/* 图片信息覆盖层 */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.5) 100%)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  padding: 16
+                }}>
+                  {/* 顶部信息 */}
+                  <div style={{
+                    color: '#fff',
+                    fontSize: 12,
+                    textShadow: '0 1px 2px rgba(0,0,0,0.8)'
+                  }}>
+                    <div style={{ fontWeight: 'bold', marginBottom: 4 }}>
+                      {selectedCamera.name} - 实时监控
+                    </div>
+                    <div>位置: {selectedCamera.location}</div>
+                    <div>时间: {currentTime.toLocaleString()}</div>
+                  </div>
+                  
+                  {/* 底部状态信息 */}
+                  <div style={{
+                    color: '#fff',
+                    fontSize: 12,
+                    textShadow: '0 1px 2px rgba(0,0,0,0.8)',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                    <div>
+                      <Badge status="success" text="在线" />
+                      <span style={{ marginLeft: 8 }}>信号: {selectedCamera.signal || 85}%</span>
+                    </div>
+                    <div>
+                      <Tag color="green">录制中</Tag>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 监控控制按钮 */}
+              <div style={{
+                position: 'absolute',
+                bottom: 16,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                gap: 8
+              }}>
+                <Button 
+                  size="small" 
+                  icon={<ReloadOutlined />}
+                  type="primary"
+                >
+                  刷新
+                </Button>
+                <Button 
+                  size="small" 
+                  icon={<SettingOutlined />}
+                  onClick={() => {
+                    console.log('设置按钮直接点击');
+                    handleOpenSettings();
+                  }}
+                  style={{ backgroundColor: '#1890ff', color: '#fff' }}
+                >
+                  设置
+                </Button>
+              </div>
+            </div>
+
+            {/* 摄像头信息 */}
+            <Row gutter={16}>
+              <Col span={12}>
+                <Card size="small" title="设备信息">
+                  <div style={{ fontSize: 12 }}>
+                    <div>设备名称: {selectedCamera.name}</div>
+                    <div>设备位置: {selectedCamera.location}</div>
+                    <div>设备状态: 
+                      <Badge 
+                        status={selectedCamera.status === 'online' ? 'success' : 'error'} 
+                        text={selectedCamera.status === 'online' ? '在线' : '离线'}
+                        style={{ marginLeft: 8 }}
+                      />
+                    </div>
+                    <div>信号强度: 
+                      <Progress 
+                        percent={selectedCamera.signal || 85} 
+                        size="small" 
+                        style={{ marginLeft: 8, width: 100 }}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              </Col>
+              <Col span={12}>
+                <Card size="small" title="监控参数">
+                  <div style={{ fontSize: 12 }}>
+                    <div>分辨率: 1920x1080</div>
+                    <div>图片质量: 高清</div>
+                    <div>格式: JPEG</div>
+                    <div>大小: 2.1MB</div>
+                    <div>录制状态: 
+                      <Switch 
+                        size="small" 
+                        checked={controlValues[`${selectedCamera.id}_recording`] || false}
+                        style={{ marginLeft: 8 }}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        )}
+      </Modal>
+
+      {/* 摄像头设置模态框 */}
+      <Modal
+        title={
+          <Space>
+            <SettingOutlined />
+            {selectedCamera?.name} - 设备设置
+          </Space>
+        }
+        visible={isSettingsModalVisible}
+        onCancel={() => {
+          console.log('设置模态框关闭');
+          setIsSettingsModalVisible(false);
+        }}
+        width={600}
+        footer={[
+          <Button key="cancel" onClick={() => setIsSettingsModalVisible(false)}>
+            取消
+          </Button>,
+          <Button key="save" type="primary" onClick={() => {
+            message.success('设置已保存');
+            setIsSettingsModalVisible(false);
+          }}>
+            保存设置
+          </Button>
+        ]}
+      >
+        {selectedCamera && (
+          <div>
+            <Tabs defaultActiveKey="basic">
+              <TabPane tab="基本设置" key="basic">
+                <Form layout="vertical">
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="设备名称">
+                        <Input defaultValue={selectedCamera.name} />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="设备位置">
+                        <Input defaultValue={selectedCamera.location} />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="分辨率">
+                        <Select defaultValue="1920x1080">
+                          <Option value="1920x1080">1920x1080 (全高清)</Option>
+                          <Option value="1280x720">1280x720 (高清)</Option>
+                          <Option value="640x480">640x480 (标清)</Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="帧率">
+                        <Select defaultValue="30">
+                          <Option value="30">30fps</Option>
+                          <Option value="25">25fps</Option>
+                          <Option value="15">15fps</Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="图片质量">
+                        <Select defaultValue="high">
+                          <Option value="high">高清</Option>
+                          <Option value="medium">中等</Option>
+                          <Option value="low">低质量</Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="自动录制">
+                        <Switch defaultChecked={controlValues[`${selectedCamera.id}_recording`] || false} />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                </Form>
+              </TabPane>
+              
+              <TabPane tab="高级设置" key="advanced">
+                <Form layout="vertical">
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="云台灵敏度">
+                        <Slider min={1} max={10} defaultValue={5} />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="变焦速度">
+                        <Slider min={1} max={10} defaultValue={5} />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="夜视模式">
+                        <Switch defaultChecked />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="运动检测">
+                        <Switch defaultChecked />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="录制时长限制">
+                        <InputNumber min={1} max={24} defaultValue={12} addonAfter="小时" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="存储路径">
+                        <Input defaultValue="/storage/camera1" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                </Form>
+              </TabPane>
+              
+              <TabPane tab="网络设置" key="network">
+                <Form layout="vertical">
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="IP地址">
+                        <Input defaultValue="192.168.1.100" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="端口">
+                        <InputNumber defaultValue={8080} />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="用户名">
+                        <Input defaultValue="admin" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="密码">
+                        <Input.Password defaultValue="123456" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item label="RTSP地址">
+                        <Input defaultValue="rtsp://192.168.1.100:554/stream1" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item label="HTTP地址">
+                        <Input defaultValue="http://192.168.1.100:8080" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                </Form>
+              </TabPane>
+            </Tabs>
+          </div>
+        )}
+      </Modal>
 
       {/* 安全验证模态框 */}
       <Modal

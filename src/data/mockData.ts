@@ -115,7 +115,7 @@ export const devices: Device[] = [
   // 高清摄像头系列
   {
     id: 'dev001',
-    name: '4K高清摄像头-生产线01',
+    name: '4K高清摄像头-停车场',
     type: 'camera',
     status: 'online',
     location: '生产车间A区1号生产线',
