@@ -1649,7 +1649,7 @@ export const organizationUnits: OrganizationUnit[] = [
         parentId: 'dept003',
         manager: '电气主管',
         managerPhone: '13800138022',
-        memberCount: 18,
+    memberCount: 18,
         description: '负责电气系统研发和控制',
         location: '研发楼2楼202',
       },

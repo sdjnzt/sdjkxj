@@ -282,17 +282,17 @@ const StatusMonitor: React.FC = () => {
         <Space>
           {record.type === 'camera' && (
             <Tooltip title="查看实时视频">
-              <Button 
-                type="link" 
-                icon={<EyeOutlined />}
-                onClick={() => handleViewVideo(record.id)}
+            <Button 
+              type="link" 
+              icon={<EyeOutlined />}
+              onClick={() => handleViewVideo(record.id)}
               />
             </Tooltip>
           )}
           <Tooltip title="设备设置">
-            <Button 
-              type="link" 
-              icon={<SettingOutlined />}
+          <Button 
+            type="link" 
+            icon={<SettingOutlined />}
             />
           </Tooltip>
         </Space>
@@ -741,24 +741,24 @@ const StatusMonitor: React.FC = () => {
             />
           </Col>
           <Col>
-            <Space>
-              <Select
+          <Space>
+            <Select
                 placeholder="设备类型"
-                style={{ width: 120 }}
-                allowClear
+              style={{ width: 120 }}
+              allowClear
                 onChange={setDeviceTypeFilter}
-              >
-                <Option value="camera">摄像头</Option>
-                <Option value="phone">对讲机</Option>
-                <Option value="sensor">传感器</Option>
-                <Option value="controller">控制器</Option>
-              </Select>
+            >
+              <Option value="camera">摄像头</Option>
+              <Option value="phone">对讲机</Option>
+              <Option value="sensor">传感器</Option>
+              <Option value="controller">控制器</Option>
+            </Select>
               <Select
                 placeholder="运行状态"
                 style={{ width: 120 }}
                 allowClear
                 onChange={setStatusFilter}
-              >
+            >
                 <Option value="online">在线</Option>
                 <Option value="offline">离线</Option>
                 <Option value="warning">告警</Option>
@@ -767,7 +767,7 @@ const StatusMonitor: React.FC = () => {
                 <Radio.Button value="table">列表视图</Radio.Button>
                 <Radio.Button value="map">地图视图</Radio.Button>
               </Radio.Group>
-            </Space>
+          </Space>
           </Col>
         </Row>
       </Card>
@@ -775,9 +775,9 @@ const StatusMonitor: React.FC = () => {
       {/* 设备列表或地图视图 */}
       <Card title={`设备${viewMode === 'table' ? '状态列表' : '位置分布'} (${filteredDevices.length})`}>
         {viewMode === 'table' ? (
-          <Table
+        <Table
             dataSource={filteredDevices}
-            columns={columns}
+          columns={columns}
             pagination={{ 
               pageSize: 10,
               showSizeChanger: true,

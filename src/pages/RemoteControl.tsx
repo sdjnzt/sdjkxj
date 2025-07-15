@@ -302,7 +302,7 @@ const RemoteControl: React.FC = () => {
               prefix={<HistoryOutlined />}
               valueStyle={{ color: '#722ed1' }}
             />
-          </Card>
+      </Card>
         </Col>
       </Row>
 
@@ -371,20 +371,20 @@ const RemoteControl: React.FC = () => {
               </Col>
             </Row>
 
-            <Row gutter={16}>
+      <Row gutter={16}>
               {filteredDevices.map(device => (
-                <Col span={8} key={device.id} style={{ marginBottom: 16 }}>
-                  <Card
-                    title={
-                      <Space>
+          <Col span={8} key={device.id} style={{ marginBottom: 16 }}>
+            <Card
+              title={
+                <Space>
                         {device.type === 'camera' && <VideoCameraOutlined />}
                         {device.type === 'controller' && <ControlOutlined />}
                         {device.type === 'sensor' && <EnvironmentOutlined />}
                         {device.type === 'phone' && <SoundOutlined />}
-                        {device.name}
-                      </Space>
-                    }
-                    extra={
+                  {device.name}
+                </Space>
+              }
+              extra={
                       <Space>
                         <Badge 
                           status={device.status === 'online' ? 'success' : device.status === 'warning' ? 'warning' : 'error'} 
@@ -400,19 +400,19 @@ const RemoteControl: React.FC = () => {
                       background: device.status === 'online' ? '#ffffff' : '#f5f5f5',
                       border: device.status === 'warning' ? '2px solid #faad14' : '1px solid #d9d9d9'
                     }}
-                  >
+            >
                     <div style={{ marginBottom: 12, fontSize: 12, color: '#666' }}>
                       <div>位置: {device.location}</div>
                       <div>更新: {device.lastUpdate}</div>
-                    </div>
+              </div>
 
-                    {device.type === 'controller' && (
-                      <div>
+              {device.type === 'controller' && (
+                <div>
                         <div style={{ marginBottom: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span>电源控制</span>
-                          <Switch
+                    <Switch
                             size="small"
-                            checked={controlValues[`${device.id}_power`] || false}
+                      checked={controlValues[`${device.id}_power`] || false}
                             onChange={(checked) => performSecurityCheck({
                               deviceId: device.id,
                               deviceName: device.name,
@@ -420,15 +420,15 @@ const RemoteControl: React.FC = () => {
                               value: checked,
                               critical: !checked
                             })}
-                            disabled={device.status !== 'online'}
-                          />
-                        </div>
+                      disabled={device.status !== 'online'}
+                    />
+                  </div>
 
                         <div style={{ marginBottom: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span>照明控制</span>
-                          <Switch
+                    <Switch
                             size="small"
-                            checked={controlValues[`${device.id}_light`] || false}
+                      checked={controlValues[`${device.id}_light`] || false}
                             onChange={(checked) => executeAction({
                               deviceId: device.id,
                               deviceName: device.name,
@@ -436,18 +436,18 @@ const RemoteControl: React.FC = () => {
                               value: checked,
                               critical: false
                             })}
-                            disabled={device.status !== 'online'}
-                          />
-                        </div>
+                      disabled={device.status !== 'online'}
+                    />
+                  </div>
 
-                        <div style={{ marginBottom: 8 }}>
+                    <div style={{ marginBottom: 8 }}>
                           <div style={{ fontSize: 12, marginBottom: 4 }}>
                             电压: {controlValues[`${device.id}_voltage`] || 220}V
-                          </div>
-                                                     <Slider
-                             min={200}
-                             max={240}
-                             value={controlValues[`${device.id}_voltage`] || 220}
+                    </div>
+                    <Slider
+                      min={200}
+                      max={240}
+                      value={controlValues[`${device.id}_voltage`] || 220}
                              onChange={(value) => executeAction({
                                deviceId: device.id,
                                deviceName: device.name,
@@ -455,30 +455,30 @@ const RemoteControl: React.FC = () => {
                                value: value,
                                critical: false
                              })}
-                             disabled={device.status !== 'online'}
-                           />
-                        </div>
+                      disabled={device.status !== 'online'}
+                    />
+                  </div>
 
-                        {device.battery && (
+                  {device.battery && (
                           <div style={{ marginBottom: 8 }}>
                             <div style={{ fontSize: 12, marginBottom: 4 }}>电池电量</div>
-                            <Progress 
-                              percent={device.battery} 
-                              size="small"
-                              status={device.battery < 20 ? 'exception' : 'normal'}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                      <Progress 
+                        percent={device.battery} 
+                        size="small"
+                        status={device.battery < 20 ? 'exception' : 'normal'}
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
 
-                    {device.type === 'camera' && (
-                      <div>
+              {device.type === 'camera' && (
+                <div>
                         <div style={{ marginBottom: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span>录制状态</span>
-                          <Switch
+                    <Switch
                             size="small"
-                            checked={controlValues[`${device.id}_recording`] || false}
+                      checked={controlValues[`${device.id}_recording`] || false}
                             onChange={(checked) => executeAction({
                               deviceId: device.id,
                               deviceName: device.name,
@@ -486,16 +486,16 @@ const RemoteControl: React.FC = () => {
                               value: checked,
                               critical: false
                             })}
-                            disabled={device.status !== 'online'}
-                          />
-                        </div>
+                      disabled={device.status !== 'online'}
+                    />
+                  </div>
 
                         <div style={{ marginBottom: 8 }}>
                           <div style={{ fontSize: 12, marginBottom: 4 }}>云台控制</div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 4 }}>
                             <div></div>
-                            <Button 
-                              size="small"
+                      <Button 
+                        size="small"
                               onClick={() => executeAction({
                                 deviceId: device.id,
                                 deviceName: device.name,
@@ -503,13 +503,13 @@ const RemoteControl: React.FC = () => {
                                 value: 'up',
                                 critical: false
                               })}
-                              disabled={device.status !== 'online'}
-                            >
-                              ↑
-                            </Button>
+                        disabled={device.status !== 'online'}
+                      >
+                        ↑
+                      </Button>
                             <div></div>
-                            <Button 
-                              size="small"
+                      <Button 
+                        size="small"
                               onClick={() => executeAction({
                                 deviceId: device.id,
                                 deviceName: device.name,
@@ -517,12 +517,12 @@ const RemoteControl: React.FC = () => {
                                 value: 'left',
                                 critical: false
                               })}
-                              disabled={device.status !== 'online'}
-                            >
-                              ←
-                            </Button>
-                            <Button 
-                              size="small"
+                        disabled={device.status !== 'online'}
+                      >
+                        ←
+                      </Button>
+                      <Button 
+                        size="small"
                               onClick={() => executeAction({
                                 deviceId: device.id,
                                 deviceName: device.name,
@@ -543,10 +543,10 @@ const RemoteControl: React.FC = () => {
                                 value: 'right',
                                 critical: false
                               })}
-                              disabled={device.status !== 'online'}
-                            >
-                              →
-                            </Button>
+                        disabled={device.status !== 'online'}
+                      >
+                        →
+                      </Button>
                             <div></div>
                             <Button 
                               size="small"
@@ -563,17 +563,17 @@ const RemoteControl: React.FC = () => {
                             </Button>
                             <div></div>
                           </div>
-                        </div>
+                  </div>
 
-                        <div style={{ marginBottom: 8 }}>
+                    <div style={{ marginBottom: 8 }}>
                           <div style={{ fontSize: 12, marginBottom: 4 }}>
                             焦距: {controlValues[`${device.id}_zoom`] || 1}x
-                          </div>
-                                                     <Slider
-                             min={1}
-                             max={10}
-                             step={0.1}
-                             value={controlValues[`${device.id}_zoom`] || 1}
+                    </div>
+                    <Slider
+                      min={1}
+                      max={10}
+                      step={0.1}
+                      value={controlValues[`${device.id}_zoom`] || 1}
                              onChange={(value) => executeAction({
                                deviceId: device.id,
                                deviceName: device.name,
@@ -581,22 +581,22 @@ const RemoteControl: React.FC = () => {
                                value: value,
                                critical: false
                              })}
-                             disabled={device.status !== 'online'}
-                           />
-                        </div>
+                      disabled={device.status !== 'online'}
+                    />
+                  </div>
 
-                        {device.signal && (
+                  {device.signal && (
                           <div style={{ marginBottom: 8 }}>
                             <div style={{ fontSize: 12, marginBottom: 4 }}>信号强度</div>
-                            <Progress 
-                              percent={device.signal} 
-                              size="small"
-                              status={device.signal < 50 ? 'exception' : 'normal'}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                      <Progress 
+                        percent={device.signal} 
+                        size="small"
+                        status={device.signal < 50 ? 'exception' : 'normal'}
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
 
                     <div style={{ marginTop: 12, display: 'flex', gap: 8 }}>
                       <Button size="small" icon={<SettingOutlined />} style={{ flex: 1 }}>
@@ -621,13 +621,13 @@ const RemoteControl: React.FC = () => {
                   <Card
                     title={scene.name}
                     extra={
-                      <Button 
-                        type="primary" 
+                <Button 
+                  type="primary" 
                         size="small"
                         onClick={() => applyPresetScene(scene)}
-                      >
+                >
                         应用
-                      </Button>
+                </Button>
                     }
                   >
                     <div style={{ marginBottom: 12, color: '#666' }}>
@@ -642,11 +642,11 @@ const RemoteControl: React.FC = () => {
                           {action.action}: {action.value.toString()}
                         </Tag>
                       ))}
-                    </div>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
+              </div>
+            </Card>
+          </Col>
+        ))}
+      </Row>
           </TabPane>
 
           <TabPane tab={<span><HistoryOutlined />操作记录</span>} key="history">

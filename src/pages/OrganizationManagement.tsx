@@ -343,10 +343,10 @@ const OrganizationManagement: React.FC = () => {
                         <Tag color="blue">{selectedUnitInfo.type === 'department' ? '部门' : selectedUnitInfo.type === 'team' ? '团队' : '小组'}</Tag>
                       </Descriptions.Item>
                       <Descriptions.Item label="部门负责人">
-                        <Space>
+              <Space>
                           <Avatar icon={<UserOutlined />} size="small" />
                           {selectedUnitInfo.manager}
-                        </Space>
+              </Space>
                       </Descriptions.Item>
                       <Descriptions.Item label="联系电话">
                         <PhoneOutlined /> {selectedUnitInfo.managerPhone}
@@ -416,7 +416,7 @@ const OrganizationManagement: React.FC = () => {
                         onChange={(e) => setSearchText(e.target.value)}
                         style={{ width: '100%' }}
                       />
-                    </Col>
+                </Col>
                     <Col span={4}>
                       <Select
                         placeholder="状态筛选"
@@ -429,7 +429,7 @@ const OrganizationManagement: React.FC = () => {
                         <Option value="busy">忙碌</Option>
                         <Option value="offline">离线</Option>
                       </Select>
-                    </Col>
+                </Col>
                     <Col span={4}>
                       <Select
                         placeholder="级别筛选"
@@ -443,22 +443,22 @@ const OrganizationManagement: React.FC = () => {
                         <Option value="高级">高级</Option>
                         <Option value="专家">专家</Option>
                       </Select>
-                    </Col>
-                    <Col span={6}>
+                </Col>
+                <Col span={6}>
                       <Button type="primary" icon={<UserAddOutlined />} onClick={handleAddUser}>
                         添加人员
                       </Button>
-                    </Col>
-                  </Row>
-                </div>
+                </Col>
+              </Row>
+            </div>
 
-                <Table
+            <Table
                   dataSource={selectedUnitUsers}
-                  columns={userColumns}
+              columns={userColumns}
                   pagination={{ pageSize: 10 }}
                   size="middle"
                   scroll={{ y: 400 }}
-                />
+            />
               </TabPane>
             </Tabs>
           </Card>

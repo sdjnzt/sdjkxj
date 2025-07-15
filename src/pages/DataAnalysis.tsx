@@ -370,7 +370,7 @@ const DataAnalysis: React.FC = () => {
       <Card>
         <Tabs activeKey={activeTab} onChange={setActiveTab}>
           <TabPane tab={<span><DashboardOutlined />数据概览</span>} key="overview">
-            <Row gutter={16}>
+      <Row gutter={16}>
               <Col span={16}>
                 <Card title="实时数据趋势" size="small">
                   <div style={{ marginBottom: 16 }}>
@@ -390,7 +390,7 @@ const DataAnalysis: React.FC = () => {
                         onChange={setDateRange}
                       />
                     </Space>
-                  </div>
+              </div>
                   <TrendChart 
                     data={trendData} 
                     field={selectedMetric}
@@ -414,8 +414,8 @@ const DataAnalysis: React.FC = () => {
                     title="数据类型分布"
                     color="#1890ff"
                   />
-                </Card>
-              </Col>
+          </Card>
+        </Col>
             </Row>
 
             <Row gutter={16} style={{ marginTop: 16 }}>
@@ -463,18 +463,18 @@ const DataAnalysis: React.FC = () => {
                         {metrics.realtimeConnections}
                       </div>
                       <div style={{ fontSize: 12, color: '#666' }}>实时连接</div>
-                    </div>
-                  </div>
+              </div>
+            </div>
                 </Card>
               </Col>
             </Row>
           </TabPane>
-
+            
           <TabPane tab={<span><AreaChartOutlined />实时监控</span>} key="realtime">
             <Row gutter={16}>
               <Col span={16}>
                 <Card title="实时数据流" size="small">
-                  <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 16 }}>
                     <Space>
                       <Search
                         placeholder="搜索设备或数据类型"
@@ -519,8 +519,8 @@ const DataAnalysis: React.FC = () => {
                                 <Tag>T: {item.temperature.toFixed(1)}°C</Tag>
                                 <Tag color="blue">H: {item.humidity.toFixed(1)}%</Tag>
                                 <Tag color="green">V: {item.voltage.toFixed(1)}V</Tag>
-                              </div>
-                            </div>
+              </div>
+            </div>
                           </Timeline.Item>
                         ))}
                     </Timeline>
@@ -550,39 +550,39 @@ const DataAnalysis: React.FC = () => {
                     </div>
                     <Progress percent={45} size="small" />
                   </div>
-                  <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 16 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                       <span>网络延迟</span>
                       <span>12ms</span>
-                    </div>
+              </div>
                     <Progress percent={12} size="small" strokeColor="#52c41a" />
-                  </div>
+            </div>
                   
                   <Divider />
-                  
-                  <div style={{ marginBottom: 16 }}>
+
+            <div style={{ marginBottom: 16 }}>
                     <div style={{ fontWeight: 'bold', marginBottom: 8 }}>连接状态</div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                       <span>活跃连接</span>
                       <Badge status="success" text={metrics.realtimeConnections.toString()} />
-                    </div>
+              </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                       <span>数据流量</span>
                       <span>1.2 MB/s</span>
-                    </div>
+            </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                       <span>处理队列</span>
                       <span>28 条</span>
-                    </div>
-                  </div>
-                </Card>
-              </Col>
-            </Row>
+              </div>
+            </div>
+          </Card>
+        </Col>
+      </Row>
           </TabPane>
 
           <TabPane tab={<span><PieChartOutlined />数据质量</span>} key="quality">
             <Row gutter={16}>
-              <Col span={12}>
+        <Col span={12}>
                 <Card title="质量指标" size="small">
                   {qualityMetrics.map((metric, index) => (
                     <div key={index} style={{ marginBottom: 16 }}>
@@ -601,12 +601,12 @@ const DataAnalysis: React.FC = () => {
                           metric.status === 'warning' ? '#faad14' : '#ff4d4f'
                         }
                         showInfo={false}
-                      />
+            />
                     </div>
                   ))}
-                </Card>
-              </Col>
-              <Col span={12}>
+          </Card>
+        </Col>
+        <Col span={12}>
                 <Card title="质量评估" size="small">
                   <div style={{ textAlign: 'center', marginBottom: 24 }}>
                     <div style={{ fontSize: 48, fontWeight: 'bold', color: '#52c41a' }}>
@@ -709,10 +709,10 @@ const DataAnalysis: React.FC = () => {
                     ]}
                     pagination={false}
                     size="small"
-                  />
-                </Card>
-              </Col>
-            </Row>
+            />
+          </Card>
+        </Col>
+      </Row>
           </TabPane>
 
           <TabPane tab={<span><FileTextOutlined />数据导出</span>} key="export">
