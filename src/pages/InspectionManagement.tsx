@@ -766,7 +766,7 @@ const InspectionManagement: React.FC = () => {
                       <Text strong>电气系统紧急检查已完成</Text>
                       <br />
                       <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2024-01-18 · 检查员：刘电工 · 评分：92分
+                        2025-07-18 · 检查员：刘电工 · 评分：92分
                       </Text>
                     </div>
                   </Timeline.Item>
@@ -778,7 +778,7 @@ const InspectionManagement: React.FC = () => {
                       <Text strong>通信设备专项检查进行中</Text>
                       <br />
                       <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2024-01-20 · 检查员：李技术 · 进度：60%
+                        2025-07-20 · 检查员：李技术 · 进度：60%
                       </Text>
                     </div>
                   </Timeline.Item>
@@ -790,7 +790,7 @@ const InspectionManagement: React.FC = () => {
                       <Text strong>年度消防安全大检查已安排</Text>
                       <br />
                       <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2024-02-01 · 检查员：王消防 · 优先级：紧急
+                        2025-07-01 · 检查员：王消防 · 优先级：紧急
                       </Text>
                     </div>
                   </Timeline.Item>
@@ -802,7 +802,7 @@ const InspectionManagement: React.FC = () => {
                       <Text strong>仓库区域安全检查已逾期</Text>
                       <br />
                       <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2024-01-10 · 检查员：陈管理 · 逾期：8天
+                        2025-07-10 · 检查员：陈管理 · 逾期：8天
                       </Text>
                     </div>
                   </Timeline.Item>
