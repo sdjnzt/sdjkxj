@@ -2,6 +2,7 @@
   "name": "jinkexing-fusion-communication",
   "version": "1.0.0",
   "description": "山东金科星机电股份有限公司融合通信管理平台",
+  "homepage": "https://sdjnzt.github.io/sdjkxj",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.2.6",

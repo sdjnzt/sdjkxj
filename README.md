@@ -26,6 +26,53 @@
 - **可视化地图** - 直观的地图调度界面
 - **模块化设计** - 功能模块独立，易于维护
 
+## 🚀 快速开始
+
+### 本地开发
+
+```bash
+# 克隆项目
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm start
+
+# 访问 http://localhost:3000
+```
+
+### 部署到GitHub Pages
+
+1. **Fork或克隆本项目到你的GitHub账户**
+
+2. **启用GitHub Pages**：
+   - 进入你的GitHub仓库
+   - 点击 Settings → Pages
+   - Source 选择 "GitHub Actions"
+
+3. **自动部署**：
+   - 推送代码到main/master分支会自动触发部署
+   - 部署完成后可通过 `https://your-username.github.io/your-repo-name` 访问
+
+### 手动部署
+
+```bash
+# 构建项目
+npm run build
+
+# 部署到GitHub Pages（需要安装gh-pages）
+npm install -g gh-pages
+gh-pages -d build
+```
+
+## 🌐 在线演示
+
+- **GitHub Pages**: [https://your-username.github.io/your-repo-name](https://your-username.github.io/your-repo-name)
+- **本地开发**: http://localhost:3000
+
 ## 技术栈
 
 - **前端框架**: React 18
