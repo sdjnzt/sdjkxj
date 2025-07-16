@@ -70,6 +70,8 @@ const StatusMonitor: React.FC = () => {
     signalStrength: 0,
     avgBattery: 0
   });
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [imageKey, setImageKey] = useState(0); // 用于强制刷新图片
 
   // 模拟实时数据更新
   useEffect(() => {
@@ -101,6 +103,14 @@ const StatusMonitor: React.FC = () => {
     }
   }, [autoRefresh]);
 
+  // 更新时间
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   // 筛选和搜索逻辑
   useEffect(() => {
     let filtered = devices;
@@ -130,6 +140,16 @@ const StatusMonitor: React.FC = () => {
 
   const handleRefreshStatus = () => {
     message.success('设备状态已刷新');
+  };
+
+  const handleRefreshImage = () => {
+    setImageKey(prev => prev + 1);
+    // 强制重新加载图片
+    const img = document.querySelector('img[src*="building.png"]') as HTMLImageElement;
+    if (img) {
+      img.src = `${process.env.PUBLIC_URL}/images/monitor/building.png?t=${Date.now()}`;
+    }
+    message.success('监控画面已刷新');
   };
 
   // 状态分布饼图数据
@@ -777,7 +797,8 @@ const StatusMonitor: React.FC = () => {
         {viewMode === 'table' ? (
         <Table
             dataSource={filteredDevices}
-          columns={columns}
+            rowKey="id"
+            columns={columns}
             pagination={{ 
               pageSize: 10,
               showSizeChanger: true,
@@ -800,7 +821,7 @@ const StatusMonitor: React.FC = () => {
             {`实时视频监控 - ${selectedDeviceInfo?.name}`}
           </Space>
         }
-        visible={isVideoModalVisible}
+        open={isVideoModalVisible}
         onCancel={() => setIsVideoModalVisible(false)}
         width={900}
         footer={null}
@@ -812,21 +833,35 @@ const StatusMonitor: React.FC = () => {
           alignItems: 'center', 
           justifyContent: 'center',
           borderRadius: 8,
-          position: 'relative'
+          position: 'relative',
+          overflow: 'hidden'
         }}>
-          <div style={{ color: 'white', textAlign: 'center' }}>
-            <VideoCameraOutlined style={{ fontSize: 64, marginBottom: 20, color: '#1890ff' }} />
-            <div style={{ fontSize: 18, marginBottom: 8 }}>高清视频实时回传</div>
-            <div style={{ marginTop: 8, fontSize: 14, opacity: 0.8 }}>
-              {selectedDeviceInfo?.location}
-            </div>
-            <div style={{ marginTop: 16 }}>
-              <Tag color="green">5G网络</Tag>
-              <Tag color="blue">低时延</Tag>
-              <Tag color="purple">1080P高清</Tag>
-              <Tag color="orange">夜视功能</Tag>
-            </div>
-          </div>
+          {/* 监控图片显示 */}
+          <img 
+            key={imageKey}
+            src={`${process.env.PUBLIC_URL}/images/monitor/building.png`}
+            alt="监控画面"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: 8
+            }}
+            onError={(e) => {
+              console.log('本地图片加载失败，尝试备用方案');
+              // 尝试不同的路径格式
+              if (e.currentTarget.src.includes('PUBLIC_URL')) {
+                e.currentTarget.src = "/sdjkxj/images/monitor/building.png";
+              } else if (e.currentTarget.src.includes('/sdjkxj/')) {
+                e.currentTarget.src = "/images/monitor/building.png";
+              } else if (e.currentTarget.src.includes('/images/')) {
+                e.currentTarget.src = "https://picsum.photos/800/600?random=1";
+              }
+            }}
+            onLoad={(e) => {
+              console.log('本地图片加载成功');
+            }}
+          />
           
           {/* 视频状态指示器 */}
           <div style={{ 
@@ -837,10 +872,14 @@ const StatusMonitor: React.FC = () => {
             padding: '8px 12px',
             borderRadius: 4,
             color: 'white',
-            fontSize: 12
+            fontSize: 12,
+            zIndex: 2
           }}>
             <Badge status="processing" />
             实时直播中
+            <div style={{ marginTop: 4, fontSize: 10, opacity: 0.8 }}>
+              {currentTime.toLocaleTimeString()}
+            </div>
           </div>
         </div>
         
@@ -859,10 +898,11 @@ const StatusMonitor: React.FC = () => {
             <Button icon={<PauseCircleOutlined />}>暂停</Button>
             <Button icon={<CameraOutlined />}>截图</Button>
             <Button icon={<DownloadOutlined />}>录制</Button>
+            <Button icon={<ReloadOutlined />} onClick={handleRefreshImage}>刷新画面</Button>
           </Space>
           <Space>
             <span style={{ fontSize: 12, color: '#666' }}>
-              分辨率: 1920×1080 | 帧率: 30fps | 码率: 2.5Mbps
+              {currentTime.toLocaleString()} | 分辨率: 1920×1080 | 帧率: 30fps | 码率: 2.5Mbps
             </span>
             <Button icon={<FullscreenOutlined />}>全屏</Button>
           </Space>
