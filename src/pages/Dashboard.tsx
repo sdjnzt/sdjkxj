@@ -397,23 +397,23 @@ const Dashboard: React.FC = () => {
           <Timeline
             items={[
               {
-                children: '2025-07-15 14:23:15 - 设备 CAM-015 上线',
+                children: '2025-07-23 14:23:15 - 设备 CAM-015 上线',
                 color: 'green'
               },
               {
-                children: '2025-07-15 14:20:32 - 系统健康检查完成',
+                children: '2025-07-23 14:20:32 - 系统健康检查完成',
                 color: 'blue'
               },
               {
-                children: '2025-07-15 14:15:45 - 设备 SEN-008 电量预警',
+                children: '2025-07-23 14:15:45 - 设备 SEN-008 电量预警',
                 color: 'orange'
               },
               {
-                children: '2025-07-15 14:10:12 - 网络连接异常恢复',
+                children: '2025-07-23 14:10:12 - 网络连接异常恢复',
                 color: 'green'
               },
               {
-                children: '2025-07-15 14:05:33 - 系统启动完成',
+                children: '2025-07-23 14:05:33 - 系统启动完成',
                 color: 'blue'
               }
             ]}

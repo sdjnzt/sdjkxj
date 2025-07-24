@@ -114,13 +114,18 @@ const AppLayout: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  // 添加登录状态检查
+  // 修改登录状态检查逻辑
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    // 只有在未登录且不在登录页面时才重定向
     if (!isLoggedIn && location.pathname !== '/login') {
       navigate('/login');
     }
-  }, [navigate, location]);
+    // 如果已登录且在登录页面，重定向到仪表板
+    else if (isLoggedIn && location.pathname === '/login') {
+      navigate('/');
+    }
+  }, [navigate, location.pathname]);
 
   // 处理通知点击
   const handleNotificationClick = () => {
@@ -313,7 +318,6 @@ const App: React.FC = () => {
     <Router basename="/sdjkxj">
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/*" element={<PrivateRoute element={<AppLayout />} />} />
       </Routes>
     </Router>
