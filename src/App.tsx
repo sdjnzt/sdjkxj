@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Layout, Menu, theme, Button, Avatar, Dropdown, Space, Typography } from 'antd';
 import {
   DashboardOutlined,
@@ -30,6 +30,7 @@ import OrganizationManagement from './pages/OrganizationManagement';
 import InspectionManagement from './pages/InspectionManagement';
 import ERPPlatform from './pages/ERPPlatform';
 import SystemSettings from './pages/SystemSettings';
+import Login from './pages/Login';
 
 const { Header, Sider, Content } = Layout;
 
@@ -92,6 +93,18 @@ const menuItems = [
   
 ];
 
+// 权限控制组件
+const PrivateRoute: React.FC<{ element: React.ReactElement }> = ({ element }) => {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const location = useLocation();
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return element;
+};
+
 const AppLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [notificationCount, setNotificationCount] = useState(3); // 模拟通知数量
@@ -100,6 +113,14 @@ const AppLayout: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  // 添加登录状态检查
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn && location.pathname !== '/login') {
+      navigate('/login');
+    }
+  }, [navigate, location]);
 
   // 处理通知点击
   const handleNotificationClick = () => {
@@ -117,8 +138,9 @@ const AppLayout: React.FC = () => {
         console.log('打开账户设置');
         break;
       case 'logout':
-        console.log('用户退出登录');
-        // 这里可以添加退出登录的逻辑
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('username');
+        navigate('/login');
         break;
       default:
         break;
@@ -289,7 +311,11 @@ const AppLayout: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router basename="/sdjkxj">
-      <AppLayout />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/*" element={<PrivateRoute element={<AppLayout />} />} />
+      </Routes>
     </Router>
   );
 };
