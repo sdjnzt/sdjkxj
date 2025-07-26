@@ -54,6 +54,7 @@ import {
 import { Pie, Column, Line } from '@ant-design/plots';
 import { inspectionRecords, rectificationItems, chartData } from '../data/mockData';
 import type { InspectionRecord, RectificationItem } from '../data/mockData';
+import ReactECharts from 'echarts-for-react';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -523,32 +524,94 @@ const InspectionManagement: React.FC = () => {
     ? inspectionRecords 
     : inspectionRecords.filter(record => record.status === filterStatus);
 
-  // 图表配置
-  const inspectionStatsConfig = {
-    data: chartData.inspectionStats,
-    angleField: 'count',
-    colorField: 'status',
-    radius: 0.8,
-    label: {
-      content: (data: any) => `${data.status}\n${data.count}`,
+  // ECharts图表配置
+  const inspectionStatsOption = {
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
-    interactions: [{ type: 'element-active' }],
-    color: ['#52c41a', '#1890ff', '#faad14', '#ff4d4f']
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      bottom: 0
+    },
+    color: ['#52c41a', '#1890ff', '#faad14', '#ff4d4f'],
+    series: [
+      {
+        name: '检查状态',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        data: [
+          { value: completedInspections, name: '已完成' },
+          { value: inspectionRecords.filter(r => r.status === 'in_progress').length, name: '进行中' },
+          { value: inspectionRecords.filter(r => r.status === 'scheduled').length, name: '已安排' },
+          { value: overdueInspections, name: '已逾期' }
+        ].filter(item => item.value > 0),
+        label: {
+          show: true,
+          formatter: '{b}: {c}项'
+        },
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
+          }
+        }
+      }
+    ]
   };
 
-  const rectificationStatsConfig = {
-    data: chartData.rectificationStats,
-    xField: 'status',
-    yField: 'count',
-    color: '#1890ff',
-    columnWidthRatio: 0.6,
-    label: {
-      position: 'inside' as const,
-      style: {
-        fill: '#FFFFFF',
-        opacity: 0.6,
-      },
+  const rectificationStatsOption = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' }
     },
+    color: ['#faad14', '#1890ff', '#52c41a', '#722ed1'],
+    xAxis: {
+      type: 'category',
+      data: ['待处理', '处理中', '已完成', '已验证'],
+      axisLabel: {
+        fontSize: 12
+      }
+    },
+    yAxis: {
+      type: 'value',
+      name: '数量',
+      nameTextStyle: {
+        fontSize: 12
+      }
+    },
+    series: [
+      {
+        name: '整改项目',
+        type: 'bar',
+        data: [
+          { 
+            value: rectificationItems.filter(r => r.status === 'pending').length,
+            itemStyle: { color: '#faad14' }
+          },
+          { 
+            value: rectificationItems.filter(r => r.status === 'in_progress').length,
+            itemStyle: { color: '#1890ff' }
+          },
+          { 
+            value: rectificationItems.filter(r => r.status === 'completed').length,
+            itemStyle: { color: '#52c41a' }
+          },
+          { 
+            value: rectificationItems.filter(r => r.status === 'verified').length,
+            itemStyle: { color: '#722ed1' }
+          }
+        ],
+        barWidth: '50%',
+        label: {
+          show: true,
+          position: 'top',
+          fontSize: 12
+        }
+      }
+    ]
   };
 
   return (
@@ -728,7 +791,11 @@ const InspectionManagement: React.FC = () => {
                 }
                 style={{ height: 400 }}
               >
-                <Pie {...inspectionStatsConfig} height={300} />
+                <ReactECharts 
+                  option={inspectionStatsOption} 
+                  style={{ height: 300 }} 
+                  opts={{ renderer: 'canvas' }}
+                />
               </Card>
             </Col>
             <Col span={12}>
@@ -741,7 +808,11 @@ const InspectionManagement: React.FC = () => {
                 }
                 style={{ height: 400 }}
               >
-                <Column {...rectificationStatsConfig} height={300} />
+                <ReactECharts 
+                  option={rectificationStatsOption} 
+                  style={{ height: 300 }}
+                  opts={{ renderer: 'canvas' }}
+                />
               </Card>
             </Col>
           </Row>
@@ -755,58 +826,34 @@ const InspectionManagement: React.FC = () => {
                     近期检查动态
                   </span>
                 }
-                style={{ height: 350 }}
               >
-                <Timeline style={{ padding: '16px 0' }}>
-                  <Timeline.Item 
-                    color="green" 
-                    dot={<CheckCircleOutlined style={{ fontSize: '16px' }} />}
-                  >
-                    <div>
-                      <Text strong>电气系统紧急检查已完成</Text>
-                      <br />
-                      <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2025-07-18 · 检查员：刘电工 · 评分：92分
-                      </Text>
+                <div style={{ padding: '16px 0' }}>
+                  {inspectionRecords.slice(0, 5).map((record, index) => (
+                    <div key={index} style={{ 
+                      display: 'flex', 
+                      justifyContent: 'space-between', 
+                      alignItems: 'center',
+                      padding: '8px 0',
+                      borderBottom: index < 4 ? '1px solid #f0f0f0' : 'none'
+                    }}>
+                      <div>
+                        <Text strong>{record.title}</Text>
+                        <div style={{ fontSize: '12px', color: '#666', marginTop: 4 }}>
+                          {record.inspector} · {record.scheduledDate}
+                        </div>
+                      </div>
+                      <Tag color={
+                        record.status === 'completed' ? 'success' :
+                        record.status === 'in_progress' ? 'processing' :
+                        record.status === 'overdue' ? 'error' : 'default'
+                      }>
+                        {record.status === 'completed' ? '已完成' :
+                         record.status === 'in_progress' ? '进行中' :
+                         record.status === 'overdue' ? '已逾期' : '已安排'}
+                      </Tag>
                     </div>
-                  </Timeline.Item>
-                  <Timeline.Item 
-                    color="blue"
-                    dot={<ReloadOutlined style={{ fontSize: '16px' }} />}
-                  >
-                    <div>
-                      <Text strong>通信设备专项检查进行中</Text>
-                      <br />
-                      <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2025-07-20 · 检查员：李技术 · 进度：60%
-                      </Text>
-                    </div>
-                  </Timeline.Item>
-                  <Timeline.Item 
-                    color="orange"
-                    dot={<CalendarOutlined style={{ fontSize: '16px' }} />}
-                  >
-                    <div>
-                      <Text strong>年度消防安全大检查已安排</Text>
-                      <br />
-                      <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2025-07-01 · 检查员：王消防 · 优先级：紧急
-                      </Text>
-                    </div>
-                  </Timeline.Item>
-                  <Timeline.Item 
-                    color="red"
-                    dot={<ExclamationCircleOutlined style={{ fontSize: '16px' }} />}
-                  >
-                    <div>
-                      <Text strong>仓库区域安全检查已逾期</Text>
-                      <br />
-                      <Text type="secondary" style={{ fontSize: '12px' }}>
-                        2025-07-10 · 检查员：陈管理 · 逾期：8天
-                      </Text>
-                    </div>
-                  </Timeline.Item>
-                </Timeline>
+                  ))}
+                </div>
               </Card>
             </Col>
           </Row>
