@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Table, Tag, Button, Modal, Form, Input, Select, Space, Alert, Timeline } from 'antd';
 import { 
   SafetyOutlined, 
@@ -18,6 +18,19 @@ const SafetyManagement: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const [form] = Form.useForm();
+  const [events, setEvents] = useState(safetyEvents);
+
+  // 每分钟更新一次事件时间戳
+  useEffect(() => {
+    const updateEvents = () => {
+      setEvents([...safetyEvents]); // 重新获取最新数据
+    };
+
+    updateEvents();
+    const interval = setInterval(updateEvents, 60000); // 每分钟更新
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleProcessEvent = (event: any) => {
     setSelectedEvent(event);
@@ -121,9 +134,9 @@ const SafetyManagement: React.FC = () => {
   ];
 
   // 统计活跃事件
-  const activeEvents = safetyEvents.filter(e => e.status === 'active');
-  const investigatingEvents = safetyEvents.filter(e => e.status === 'investigating');
-  const resolvedEvents = safetyEvents.filter(e => e.status === 'resolved');
+  const activeEvents = events.filter(e => e.status === 'active');
+  const investigatingEvents = events.filter(e => e.status === 'investigating');
+  const resolvedEvents = events.filter(e => e.status === 'resolved');
 
   return (
     <div>
@@ -180,7 +193,7 @@ const SafetyManagement: React.FC = () => {
           <Card>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 24, fontWeight: 'bold', color: '#1890ff' }}>
-                {safetyEvents.length}
+                {events.length}
               </div>
               <div>总事件数</div>
             </div>
@@ -193,7 +206,7 @@ const SafetyManagement: React.FC = () => {
         <Col span={16}>
           <Card title="安全事件列表">
             <Table
-              dataSource={safetyEvents}
+              dataSource={events}
               columns={columns}
               pagination={{ pageSize: 8 }}
               scroll={{ x: 1000 }}
