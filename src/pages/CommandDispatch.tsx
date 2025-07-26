@@ -50,18 +50,24 @@ import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
   ReloadOutlined,
-  FullscreenOutlined,
-  MessageOutlined,
+  DownOutlined,
+  MenuOutlined,
+  SearchOutlined,
+  FilterOutlined,
+  SyncOutlined,
+  InfoCircleOutlined,
   BellOutlined,
-  RadarChartOutlined,
   AimOutlined,
   NodeIndexOutlined,
   LinkOutlined,
   MonitorOutlined,
   RocketOutlined,
-  FireOutlined
+  FireOutlined,
+  RadarChartOutlined,
+  MessageOutlined,
+  FullscreenOutlined
 } from '@ant-design/icons';
-import { commands, users, devices } from '../data/mockData';
+import { users, devices, getCurrentTimestamp, getPastTimestamp } from '../data/mockData';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -79,13 +85,73 @@ interface DevicePosition {
 
 interface CallSession {
   id: string;
-  userId: string;
-  userName: string;
+  caller: string;
+  callerName: string;
+  receiver: string;
+  receiverName: string;
   type: 'voice' | 'video';
   status: 'connecting' | 'active' | 'ended';
-  duration: number;
   startTime: string;
+  duration: number;
 }
+
+
+
+// 生成动态指令数据
+const generateDynamicCommands = () => {
+  return [
+    {
+      id: 'cmd001',
+      title: '紧急集合通知',
+      content: '请各车间负责人立即到会议室集合，有重要事项讨论',
+      sender: '张伟民',
+      receiver: '全体车间主任',
+      status: 'sent',
+      timestamp: getCurrentTimestamp(),
+      priority: 'urgent',
+    },
+    {
+      id: 'cmd002',
+      title: '设备检查指令',
+      content: '请检查A区生产设备运行状态，确保安全生产。重点关注5号生产线液压系统压力值，如有异常立即上报。',
+      sender: '李国强',
+      receiver: '王建军',
+      status: 'received',
+      timestamp: getPastTimestamp(5),
+      priority: 'high',
+    },
+    {
+      id: 'cmd003',
+      title: '安全巡检通知',
+      content: '请各区域安全员进行例行安全巡检，特别关注消防设施和应急通道畅通情况',
+      sender: '孙管理',
+      receiver: '安全员团队',
+      status: 'completed',
+      timestamp: getPastTimestamp(10),
+      priority: 'medium',
+    },
+    {
+      id: 'cmd004',
+      title: '原料供应协调',
+      content: 'B区生产线原料库存不足，请物流部门紧急补充化工原料，预计需求量500公斤，确保明日正常生产。',
+      sender: '陈生产主管',
+      receiver: '物流部门',
+      status: 'pending',
+      timestamp: getPastTimestamp(15),
+      priority: 'high',
+    },
+    {
+      id: 'cmd005',
+      title: '设备维护计划',
+      content: '3号压缩机定期保养时间到，安排在今晚20:00停机维护，预计维护时间4小时，请做好生产调度安排。',
+      sender: '维护部',
+      receiver: 'C区生产组',
+      status: 'sent',
+      timestamp: getPastTimestamp(20),
+      priority: 'medium',
+    }
+  ];
+};
 
 const CommandDispatch: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -97,6 +163,16 @@ const CommandDispatch: React.FC = () => {
   const [emergencyMode, setEmergencyMode] = useState(false);
   const [broadcastMode, setBroadcastMode] = useState(false);
   const [mapCenter, setMapCenter] = useState({ x: 50, y: 50 });
+  const [commandList, setCommandList] = useState(generateDynamicCommands());
+
+  // 每分钟更新一次指令列表和时间戳
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCommandList(generateDynamicCommands());
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // 模拟设备位置数据 - 基于真实地图布局
   const devicePositions: DevicePosition[] = [
@@ -146,7 +222,18 @@ const CommandDispatch: React.FC = () => {
 
   const handleModalOk = () => {
     form.validateFields().then((values) => {
-      console.log('发送指令:', values);
+      const newCommand = {
+        id: `cmd${Date.now()}`,
+        title: values.title,
+        content: values.content,
+        sender: '张伟民', // 这里可以根据当前登录用户动态设置
+        receiver: values.receiver.join(','),
+        status: 'sent',
+        timestamp: getCurrentTimestamp(),
+        priority: values.priority,
+      };
+      
+      setCommandList(prev => [newCommand, ...prev]);
       message.success('指令发送成功！');
       setIsModalVisible(false);
       form.resetFields();
@@ -166,55 +253,59 @@ const CommandDispatch: React.FC = () => {
   };
 
   const handleVoiceCall = (userId: string, userName: string) => {
-    const newCall: CallSession = {
-      id: Date.now().toString(),
-      userId,
-      userName,
-      type: 'voice',
-      status: 'connecting',
-      duration: 0,
-      startTime: new Date().toLocaleTimeString()
-    };
-    
-    setActiveCalls(prev => [...prev, newCall]);
-    
-    // 模拟连接过程
-    setTimeout(() => {
-      setActiveCalls(prev => 
-        prev.map(call => 
-          call.id === newCall.id 
-            ? { ...call, status: 'active' }
-            : call
-        )
-      );
-      message.success(`与 ${userName} 的语音通话已建立`);
-    }, 2000);
+    if (!activeCalls.some(call => call.caller === userId && call.status !== 'ended')) {
+      const newCall: CallSession = {
+        id: Date.now().toString(),
+        caller: userId,
+        callerName: userName,
+        receiver: selectedUser,
+        receiverName: users.find(u => u.id === selectedUser)?.name || '',
+        type: 'voice',
+        status: 'connecting',
+        startTime: new Date().toLocaleTimeString(),
+        duration: 0,
+      };
+      setActiveCalls(prev => [...prev, newCall]);
+      
+      // 模拟连接建立
+      setTimeout(() => {
+        setActiveCalls(prev => 
+          prev.map(call => 
+            call.id === newCall.id 
+              ? { ...call, status: 'active' }
+              : call
+          )
+        );
+      }, 1000);
+    }
   };
 
   const handleVideoCall = (userId: string, userName: string) => {
-    const newCall: CallSession = {
-      id: Date.now().toString(),
-      userId,
-      userName,
-      type: 'video',
-      status: 'connecting',
-      duration: 0,
-      startTime: new Date().toLocaleTimeString()
-    };
-    
-    setActiveCalls(prev => [...prev, newCall]);
-    
-    // 模拟连接过程
-    setTimeout(() => {
-      setActiveCalls(prev => 
-        prev.map(call => 
-          call.id === newCall.id 
-            ? { ...call, status: 'active' }
-            : call
-        )
-      );
-      message.success(`与 ${userName} 的视频通话已建立`);
-    }, 2000);
+    if (!activeCalls.some(call => call.caller === userId && call.status !== 'ended')) {
+      const newCall: CallSession = {
+        id: Date.now().toString(),
+        caller: userId,
+        callerName: userName,
+        receiver: selectedUser,
+        receiverName: users.find(u => u.id === selectedUser)?.name || '',
+        type: 'video',
+        status: 'connecting',
+        startTime: new Date().toLocaleTimeString(),
+        duration: 0,
+      };
+      setActiveCalls(prev => [...prev, newCall]);
+      
+      // 模拟连接建立
+      setTimeout(() => {
+        setActiveCalls(prev => 
+          prev.map(call => 
+            call.id === newCall.id 
+              ? { ...call, status: 'active' }
+              : call
+          )
+        );
+      }, 1000);
+    }
   };
 
   const handleEndCall = (callId: string) => {
@@ -353,14 +444,14 @@ const CommandDispatch: React.FC = () => {
                   color: '#262626',
                   fontSize: '24px'
                 }}>
-                  <RocketOutlined style={{ marginRight: 8, color: '#1890ff' }} />
-                  智能指挥调度中心
+                  <TeamOutlined style={{ marginRight: 8, color: '#1890ff' }} />
+                  指挥调度模块
                 </Title>
                 <Text style={{ 
                   fontSize: '14px', 
                   color: '#8c8c8c'
                 }}>
-                  统一调度 · 实时通信 · 协同作业
+                  作为企业的指挥中枢，实现对企业资源和人员的统一调度和指挥，提高企业的应急响应能力和运营效率
                 </Text>
               </div>
             </Space>
@@ -954,7 +1045,7 @@ const CommandDispatch: React.FC = () => {
                           }
                           title={
                             <div style={{ fontSize: '14px' }}>
-                              {call.userName}
+                              {call.callerName} → {call.receiverName}
                               <Tag 
                                 color={call.status === 'active' ? 'green' : 'orange'}
                                 style={{ marginLeft: '8px' }}
@@ -988,7 +1079,7 @@ const CommandDispatch: React.FC = () => {
               <Space>
                 <SendOutlined style={{ color: '#722ed1' }} />
                 <span>指令调度管理</span>
-                <Badge count={commands.filter(c => c.status === 'pending').length} />
+                <Badge count={commandList.filter(c => c.status === 'pending').length} />
               </Space>
             }
             extra={
@@ -1004,7 +1095,7 @@ const CommandDispatch: React.FC = () => {
             }}
           >
             <Table
-              dataSource={commands}
+              dataSource={commandList}
               columns={commandColumns}
               pagination={{ 
                 pageSize: 8,

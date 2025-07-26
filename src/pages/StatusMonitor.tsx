@@ -16,7 +16,8 @@ import {
   Tooltip,
   message,
   Switch,
-  Radio
+  Radio,
+  Typography
 } from 'antd';
 import { 
   VideoCameraOutlined, 
@@ -36,9 +37,9 @@ import {
   CameraOutlined,
   DownloadOutlined
 } from '@ant-design/icons';
-
 import { devices } from '../data/mockData';
 
+const { Text } = Typography;
 const { Option } = Select;
 const { Search } = Input;
 
@@ -582,7 +583,15 @@ const StatusMonitor: React.FC = () => {
   return (
     <div style={{ padding: 24 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-        <h2 style={{ margin: 0 }}>设备状态监控</h2>
+        <div>
+          <h2 style={{ margin: 0 }}>
+            <VideoCameraOutlined style={{ marginRight: 8 }} />
+            状态监测模块
+          </h2>
+          <Text type="secondary" style={{ fontSize: '14px' }}>
+            实时监测智能终端和设备的运行状态，及时发现异常情况并进行预警，保障系统的稳定运行
+          </Text>
+        </div>
         <Space>
           <span>自动刷新:</span>
           <Switch checked={autoRefresh} onChange={setAutoRefresh} />

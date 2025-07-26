@@ -1,4 +1,18 @@
 // 模拟数据文件
+
+// 生成当前时间戳的辅助函数
+export const getCurrentTimestamp = () => {
+  const now = new Date();
+  return now.toISOString().slice(0, 19).replace('T', ' ');
+};
+
+// 生成过去时间戳的辅助函数
+export const getPastTimestamp = (minutesAgo: number) => {
+  const now = new Date();
+  const past = new Date(now.getTime() - minutesAgo * 60 * 1000);
+  return past.toISOString().slice(0, 19).replace('T', ' ');
+};
+
 export interface Device {
   id: string;
   name: string;
@@ -1003,30 +1017,30 @@ export const commands: Command[] = [
     id: 'cmd001',
     title: '紧急集合通知',
     content: '请各车间负责人立即到会议室集合，有重要事项讨论',
-    sender: '张主任',
+    sender: '张伟民',
     receiver: '全体车间主任',
     status: 'sent',
-    timestamp: '2025-07-23 14:30:00',
+    timestamp: '2024-01-29 14:30:00',
     priority: 'urgent',
   },
   {
     id: 'cmd002',
     title: '设备检查指令',
     content: '请检查A区生产设备运行状态，确保安全生产。重点关注5号生产线液压系统压力值，如有异常立即上报。',
-    sender: '李工程师',
-    receiver: '王技术员',
+    sender: '李国强',
+    receiver: '王建军',
     status: 'received',
-    timestamp: '2025-07-23 14:25:00',
+    timestamp: '2024-01-29 14:25:00',
     priority: 'high',
   },
   {
     id: 'cmd003',
     title: '安全巡检通知',
     content: '请各区域安全员进行例行安全巡检，特别关注消防设施和应急通道畅通情况',
-    sender: '赵安全员',
+    sender: '孙管理',
     receiver: '安全员团队',
     status: 'completed',
-    timestamp: '2025-07-23 14:20:00',
+    timestamp: '2024-01-29 14:20:00',
     priority: 'medium',
   },
   {
@@ -2222,18 +2236,6 @@ export interface TransmissionLog {
 // ==================== 新增模拟数据 ====================
 
 // 标准化接口日志数据
-// 生成当前时间戳的辅助函数
-const getCurrentTimestamp = () => {
-  const now = new Date();
-  return now.toISOString().slice(0, 19).replace('T', ' ');
-};
-
-// 生成过去时间戳的辅助函数
-const getPastTimestamp = (minutesAgo: number) => {
-  const now = new Date();
-  const past = new Date(now.getTime() - minutesAgo * 60 * 1000);
-  return past.toISOString().slice(0, 19).replace('T', ' ');
-};
 
 export const apiLogs: ApiLog[] = [
   // 设备状态查询
@@ -2374,7 +2376,77 @@ export const apiLogs: ApiLog[] = [
   { id: 'LOG-097', timestamp: getPastTimestamp(97), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'HUM-G-001', value: 68.5 }, responseStatus: 200, responseTime: 71, ipAddress: '192.168.1.156', userAgent: 'Sensor-System/2.1', success: true },
   { id: 'LOG-098', timestamp: getPastTimestamp(98), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'PRESS-G-001', value: 1014.78 }, responseStatus: 200, responseTime: 69, ipAddress: '192.168.1.157', userAgent: 'Sensor-System/2.1', success: true },
   { id: 'LOG-099', timestamp: getPastTimestamp(99), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'MOTION-G-001', value: 0 }, responseStatus: 200, responseTime: 73, ipAddress: '192.168.1.158', userAgent: 'Sensor-System/2.1', success: true },
-  { id: 'LOG-100', timestamp: getPastTimestamp(100), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'LIGHT-G-001', value: 380 }, responseStatus: 200, responseTime: 68, ipAddress: '192.168.1.159', userAgent: 'Sensor-System/2.1', success: true }
+  { id: 'LOG-100', timestamp: getPastTimestamp(100), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'LIGHT-G-001', value: 380 }, responseStatus: 200, responseTime: 68, ipAddress: '192.168.1.159', userAgent: 'Sensor-System/2.1', success: true },
+  
+  // 继续添加更多API日志数据 (101-200)
+  { id: 'LOG-101', timestamp: getPastTimestamp(101), endpoint: '/api/devices/status', method: 'GET', user: 'operator9', responseStatus: 200, responseTime: 45, ipAddress: '192.168.1.180', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-102', timestamp: getPastTimestamp(102), endpoint: '/api/devices/status', method: 'GET', user: 'operator10', responseStatus: 200, responseTime: 52, ipAddress: '192.168.1.181', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-103', timestamp: getPastTimestamp(103), endpoint: '/api/devices/status', method: 'GET', user: 'operator11', responseStatus: 200, responseTime: 48, ipAddress: '192.168.1.182', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-104', timestamp: getPastTimestamp(104), endpoint: '/api/devices/status', method: 'GET', user: 'operator12', responseStatus: 200, responseTime: 51, ipAddress: '192.168.1.183', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-105', timestamp: getPastTimestamp(105), endpoint: '/api/devices/status', method: 'GET', user: 'operator13', responseStatus: 200, responseTime: 47, ipAddress: '192.168.1.184', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 命令发送扩展 (106-150)
+  { id: 'LOG-106', timestamp: getPastTimestamp(106), endpoint: '/api/commands/send', method: 'POST', user: 'operator9', requestData: { command: 'check_network', deviceId: 'dev036' }, responseStatus: 201, responseTime: 89, ipAddress: '192.168.1.180', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-107', timestamp: getPastTimestamp(107), endpoint: '/api/commands/send', method: 'POST', user: 'operator10', requestData: { command: 'update_firmware', deviceId: 'dev037' }, responseStatus: 201, responseTime: 145, ipAddress: '192.168.1.181', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-108', timestamp: getPastTimestamp(108), endpoint: '/api/commands/send', method: 'POST', user: 'operator11', requestData: { command: 'calibrate_sensor', deviceId: 'dev038' }, responseStatus: 201, responseTime: 123, ipAddress: '192.168.1.182', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-109', timestamp: getPastTimestamp(109), endpoint: '/api/commands/send', method: 'POST', user: 'operator12', requestData: { command: 'test_connection', deviceId: 'dev039' }, responseStatus: 201, responseTime: 67, ipAddress: '192.168.1.183', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-110', timestamp: getPastTimestamp(110), endpoint: '/api/commands/send', method: 'POST', user: 'operator13', requestData: { command: 'reset_device', deviceId: 'dev040' }, responseStatus: 201, responseTime: 98, ipAddress: '192.168.1.184', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 视频流扩展 (111-150)
+  { id: 'LOG-111', timestamp: getPastTimestamp(111), endpoint: '/api/video/stream', method: 'GET', user: 'viewer8', responseStatus: 200, responseTime: 85, ipAddress: '192.168.1.185', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-112', timestamp: getPastTimestamp(112), endpoint: '/api/video/stream', method: 'GET', user: 'viewer9', responseStatus: 200, responseTime: 92, ipAddress: '192.168.1.186', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-113', timestamp: getPastTimestamp(113), endpoint: '/api/video/stream', method: 'GET', user: 'viewer10', responseStatus: 200, responseTime: 88, ipAddress: '192.168.1.187', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-114', timestamp: getPastTimestamp(114), endpoint: '/api/video/stream', method: 'GET', user: 'viewer11', responseStatus: 200, responseTime: 95, ipAddress: '192.168.1.188', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-115', timestamp: getPastTimestamp(115), endpoint: '/api/video/stream', method: 'GET', user: 'viewer12', responseStatus: 200, responseTime: 91, ipAddress: '192.168.1.189', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 认证扩展 (116-150)
+  { id: 'LOG-116', timestamp: getPastTimestamp(116), endpoint: '/api/auth/login', method: 'POST', user: 'user029', requestData: { username: 'user029', password: '****' }, responseStatus: 200, responseTime: 134, ipAddress: '192.168.1.190', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-117', timestamp: getPastTimestamp(117), endpoint: '/api/auth/login', method: 'POST', user: 'user030', requestData: { username: 'user030', password: '****' }, responseStatus: 200, responseTime: 156, ipAddress: '192.168.1.191', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-118', timestamp: getPastTimestamp(118), endpoint: '/api/auth/login', method: 'POST', user: 'user031', requestData: { username: 'user031', password: '****' }, responseStatus: 200, responseTime: 142, ipAddress: '192.168.1.192', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-119', timestamp: getPastTimestamp(119), endpoint: '/api/auth/login', method: 'POST', user: 'user032', requestData: { username: 'user032', password: '****' }, responseStatus: 200, responseTime: 167, ipAddress: '192.168.1.193', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-120', timestamp: getPastTimestamp(120), endpoint: '/api/auth/login', method: 'POST', user: 'user033', requestData: { username: 'user033', password: '****' }, responseStatus: 200, responseTime: 145, ipAddress: '192.168.1.194', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 数据同步扩展 (121-150)
+  { id: 'LOG-121', timestamp: getPastTimestamp(121), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'realtime', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 42, ipAddress: '192.168.1.195', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-122', timestamp: getPastTimestamp(122), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'batch', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 1189, ipAddress: '192.168.1.196', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-123', timestamp: getPastTimestamp(123), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'incremental', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 223, ipAddress: '192.168.1.197', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-124', timestamp: getPastTimestamp(124), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'backup', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 856, ipAddress: '192.168.1.198', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-125', timestamp: getPastTimestamp(125), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'full', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 1498, ipAddress: '192.168.1.199', userAgent: 'System-Sync-Service/1.0', success: true },
+  
+  // 传感器数据扩展 (126-150)
+  { id: 'LOG-126', timestamp: getPastTimestamp(126), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'TEMP-H-001', value: 21.8 }, responseStatus: 200, responseTime: 65, ipAddress: '192.168.1.200', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-127', timestamp: getPastTimestamp(127), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'HUM-H-001', value: 62.3 }, responseStatus: 200, responseTime: 69, ipAddress: '192.168.1.201', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-128', timestamp: getPastTimestamp(128), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'PRESS-H-001', value: 1013.45 }, responseStatus: 200, responseTime: 71, ipAddress: '192.168.1.202', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-129', timestamp: getPastTimestamp(129), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'MOTION-H-001', value: 1 }, responseStatus: 200, responseTime: 67, ipAddress: '192.168.1.203', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-130', timestamp: getPastTimestamp(130), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'LIGHT-H-001', value: 420 }, responseStatus: 200, responseTime: 70, ipAddress: '192.168.1.204', userAgent: 'Sensor-System/2.1', success: true },
+  
+  // 继续添加更多数据 (131-200)
+  { id: 'LOG-131', timestamp: getPastTimestamp(131), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'TEMP-I-001', value: 24.2 }, responseStatus: 200, responseTime: 68, ipAddress: '192.168.1.205', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-132', timestamp: getPastTimestamp(132), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'HUM-I-001', value: 55.8 }, responseStatus: 200, responseTime: 72, ipAddress: '192.168.1.206', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-133', timestamp: getPastTimestamp(133), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'PRESS-I-001', value: 1012.89 }, responseStatus: 200, responseTime: 66, ipAddress: '192.168.1.207', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-134', timestamp: getPastTimestamp(134), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'MOTION-I-001', value: 1 }, responseStatus: 200, responseTime: 64, ipAddress: '192.168.1.208', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-135', timestamp: getPastTimestamp(135), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'LIGHT-I-001', value: 580 }, responseStatus: 200, responseTime: 69, ipAddress: '192.168.1.209', userAgent: 'Sensor-System/2.1', success: true },
+  
+  // 继续添加更多数据 (136-200)
+  { id: 'LOG-136', timestamp: getPastTimestamp(136), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'TEMP-J-001', value: 22.7 }, responseStatus: 200, responseTime: 67, ipAddress: '192.168.1.210', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-137', timestamp: getPastTimestamp(137), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'HUM-J-001', value: 59.4 }, responseStatus: 200, responseTime: 71, ipAddress: '192.168.1.211', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-138', timestamp: getPastTimestamp(138), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'PRESS-J-001', value: 1014.23 }, responseStatus: 200, responseTime: 65, ipAddress: '192.168.1.212', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-139', timestamp: getPastTimestamp(139), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'MOTION-J-001', value: 0 }, responseStatus: 200, responseTime: 63, ipAddress: '192.168.1.213', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-140', timestamp: getPastTimestamp(140), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'LIGHT-J-001', value: 650 }, responseStatus: 200, responseTime: 68, ipAddress: '192.168.1.214', userAgent: 'Sensor-System/2.1', success: true },
+  
+  // 继续添加更多数据 (141-200)
+  { id: 'LOG-141', timestamp: getPastTimestamp(141), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev051', type: 'camera', location: 'K区监控点1' }, responseStatus: 201, responseTime: 178, ipAddress: '192.168.1.215', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-142', timestamp: getPastTimestamp(142), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev052', type: 'sensor', location: 'K区监控点2' }, responseStatus: 201, responseTime: 156, ipAddress: '192.168.1.216', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-143', timestamp: getPastTimestamp(143), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev053', type: 'phone', location: 'K区监控点3' }, responseStatus: 201, responseTime: 134, ipAddress: '192.168.1.217', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-144', timestamp: getPastTimestamp(144), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev054', type: 'controller', location: 'K区监控点4' }, responseStatus: 201, responseTime: 167, ipAddress: '192.168.1.218', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-145', timestamp: getPastTimestamp(145), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev055', type: 'camera', location: 'K区监控点5' }, responseStatus: 201, responseTime: 189, ipAddress: '192.168.1.219', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 继续添加更多数据 (146-200)
+  { id: 'LOG-146', timestamp: getPastTimestamp(146), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev056', type: 'sensor', location: 'L区监控点1' }, responseStatus: 201, responseTime: 145, ipAddress: '192.168.1.220', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-147', timestamp: getPastTimestamp(147), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev057', type: 'phone', location: 'L区监控点2' }, responseStatus: 201, responseTime: 123, ipAddress: '192.168.1.221', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-148', timestamp: getPastTimestamp(148), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev058', type: 'camera', location: 'L区监控点3' }, responseStatus: 201, responseTime: 178, ipAddress: '192.168.1.222', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-149', timestamp: getPastTimestamp(149), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev059', type: 'controller', location: 'L区监控点4' }, responseStatus: 201, responseTime: 156, ipAddress: '192.168.1.223', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-150', timestamp: getPastTimestamp(150), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev060', type: 'sensor', location: 'L区监控点5' }, responseStatus: 201, responseTime: 134, ipAddress: '192.168.1.224', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true }
 ];
 
 // 数据同步记录
