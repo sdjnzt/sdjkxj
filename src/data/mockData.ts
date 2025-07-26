@@ -2304,7 +2304,77 @@ export const apiLogs: ApiLog[] = [
   { id: 'LOG-047', timestamp: getPastTimestamp(47), endpoint: '/api/users/update', method: 'PUT', user: 'admin', requestData: { userId: 'user001', role: 'supervisor' }, responseStatus: 200, responseTime: 156, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
   { id: 'LOG-048', timestamp: getPastTimestamp(48), endpoint: '/api/users/delete', method: 'DELETE', user: 'admin', requestData: { userId: 'user999' }, responseStatus: 200, responseTime: 89, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
   { id: 'LOG-049', timestamp: getPastTimestamp(49), endpoint: '/api/users/list', method: 'GET', user: 'admin', responseStatus: 200, responseTime: 67, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
-  { id: 'LOG-050', timestamp: getPastTimestamp(50), endpoint: '/api/users/permissions', method: 'GET', user: 'admin', responseStatus: 200, responseTime: 78, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true }
+  { id: 'LOG-050', timestamp: getPastTimestamp(50), endpoint: '/api/users/permissions', method: 'GET', user: 'admin', responseStatus: 200, responseTime: 78, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 设备管理扩展
+  { id: 'LOG-051', timestamp: getPastTimestamp(51), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev031', type: 'camera', location: 'G区监控点1' }, responseStatus: 201, responseTime: 189, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-052', timestamp: getPastTimestamp(52), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev032', type: 'sensor', location: 'G区监控点2' }, responseStatus: 201, responseTime: 167, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-053', timestamp: getPastTimestamp(53), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev033', type: 'phone', location: 'G区监控点3' }, responseStatus: 201, responseTime: 145, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-054', timestamp: getPastTimestamp(54), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev034', type: 'controller', location: 'G区监控点4' }, responseStatus: 201, responseTime: 178, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-055', timestamp: getPastTimestamp(55), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev035', type: 'camera', location: 'G区监控点5' }, responseStatus: 201, responseTime: 156, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // H区设备
+  { id: 'LOG-056', timestamp: getPastTimestamp(56), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev036', type: 'sensor', location: 'H区监控点1' }, responseStatus: 201, responseTime: 134, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-057', timestamp: getPastTimestamp(57), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev037', type: 'phone', location: 'H区监控点2' }, responseStatus: 201, responseTime: 123, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-058', timestamp: getPastTimestamp(58), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev038', type: 'camera', location: 'H区监控点3' }, responseStatus: 201, responseTime: 167, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-059', timestamp: getPastTimestamp(59), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev039', type: 'controller', location: 'H区监控点4' }, responseStatus: 201, responseTime: 189, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-060', timestamp: getPastTimestamp(60), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev040', type: 'sensor', location: 'H区监控点5' }, responseStatus: 201, responseTime: 145, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // I区设备
+  { id: 'LOG-061', timestamp: getPastTimestamp(61), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev041', type: 'camera', location: 'I区监控点1' }, responseStatus: 201, responseTime: 178, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-062', timestamp: getPastTimestamp(62), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev042', type: 'phone', location: 'I区监控点2' }, responseStatus: 201, responseTime: 156, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-063', timestamp: getPastTimestamp(63), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev043', type: 'sensor', location: 'I区监控点3' }, responseStatus: 201, responseTime: 134, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-064', timestamp: getPastTimestamp(64), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev044', type: 'controller', location: 'I区监控点4' }, responseStatus: 201, responseTime: 167, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-065', timestamp: getPastTimestamp(65), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev045', type: 'camera', location: 'I区监控点5' }, responseStatus: 201, responseTime: 189, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // J区设备
+  { id: 'LOG-066', timestamp: getPastTimestamp(66), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev046', type: 'sensor', location: 'J区监控点1' }, responseStatus: 201, responseTime: 145, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-067', timestamp: getPastTimestamp(67), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev047', type: 'phone', location: 'J区监控点2' }, responseStatus: 201, responseTime: 123, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-068', timestamp: getPastTimestamp(68), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev048', type: 'camera', location: 'J区监控点3' }, responseStatus: 201, responseTime: 178, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-069', timestamp: getPastTimestamp(69), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev049', type: 'controller', location: 'J区监控点4' }, responseStatus: 201, responseTime: 156, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-070', timestamp: getPastTimestamp(70), endpoint: '/api/devices/register', method: 'POST', user: 'admin', requestData: { deviceId: 'dev050', type: 'sensor', location: 'J区监控点5' }, responseStatus: 201, responseTime: 134, ipAddress: '192.168.1.100', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 设备状态查询扩展
+  { id: 'LOG-071', timestamp: getPastTimestamp(71), endpoint: '/api/devices/status', method: 'GET', user: 'operator4', responseStatus: 200, responseTime: 52, ipAddress: '192.168.1.135', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-072', timestamp: getPastTimestamp(72), endpoint: '/api/devices/status', method: 'GET', user: 'operator5', responseStatus: 200, responseTime: 48, ipAddress: '192.168.1.136', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-073', timestamp: getPastTimestamp(73), endpoint: '/api/devices/status', method: 'GET', user: 'operator6', responseStatus: 200, responseTime: 51, ipAddress: '192.168.1.137', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-074', timestamp: getPastTimestamp(74), endpoint: '/api/devices/status', method: 'GET', user: 'operator7', responseStatus: 200, responseTime: 47, ipAddress: '192.168.1.138', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-075', timestamp: getPastTimestamp(75), endpoint: '/api/devices/status', method: 'GET', user: 'operator8', responseStatus: 200, responseTime: 49, ipAddress: '192.168.1.139', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 命令发送扩展
+  { id: 'LOG-076', timestamp: getPastTimestamp(76), endpoint: '/api/commands/send', method: 'POST', user: 'operator4', requestData: { command: 'check_network', deviceId: 'dev031' }, responseStatus: 201, responseTime: 95, ipAddress: '192.168.1.135', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-077', timestamp: getPastTimestamp(77), endpoint: '/api/commands/send', method: 'POST', user: 'operator5', requestData: { command: 'update_firmware', deviceId: 'dev032' }, responseStatus: 201, responseTime: 156, ipAddress: '192.168.1.136', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-078', timestamp: getPastTimestamp(78), endpoint: '/api/commands/send', method: 'POST', user: 'operator6', requestData: { command: 'calibrate_sensor', deviceId: 'dev033' }, responseStatus: 201, responseTime: 134, ipAddress: '192.168.1.137', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-079', timestamp: getPastTimestamp(79), endpoint: '/api/commands/send', method: 'POST', user: 'operator7', requestData: { command: 'test_connection', deviceId: 'dev034' }, responseStatus: 201, responseTime: 78, ipAddress: '192.168.1.138', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-080', timestamp: getPastTimestamp(80), endpoint: '/api/commands/send', method: 'POST', user: 'operator8', requestData: { command: 'reset_device', deviceId: 'dev035' }, responseStatus: 201, responseTime: 112, ipAddress: '192.168.1.139', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 视频流扩展
+  { id: 'LOG-081', timestamp: getPastTimestamp(81), endpoint: '/api/video/stream', method: 'GET', user: 'viewer3', responseStatus: 200, responseTime: 89, ipAddress: '192.168.1.140', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-082', timestamp: getPastTimestamp(82), endpoint: '/api/video/stream', method: 'GET', user: 'viewer4', responseStatus: 200, responseTime: 92, ipAddress: '192.168.1.141', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-083', timestamp: getPastTimestamp(83), endpoint: '/api/video/stream', method: 'GET', user: 'viewer5', responseStatus: 200, responseTime: 87, ipAddress: '192.168.1.142', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-084', timestamp: getPastTimestamp(84), endpoint: '/api/video/stream', method: 'GET', user: 'viewer6', responseStatus: 200, responseTime: 94, ipAddress: '192.168.1.143', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-085', timestamp: getPastTimestamp(85), endpoint: '/api/video/stream', method: 'GET', user: 'viewer7', responseStatus: 200, responseTime: 91, ipAddress: '192.168.1.144', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 认证扩展
+  { id: 'LOG-086', timestamp: getPastTimestamp(86), endpoint: '/api/auth/login', method: 'POST', user: 'user004', requestData: { username: 'user004', password: '****' }, responseStatus: 200, responseTime: 156, ipAddress: '192.168.1.145', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-087', timestamp: getPastTimestamp(87), endpoint: '/api/auth/login', method: 'POST', user: 'user005', requestData: { username: 'user005', password: '****' }, responseStatus: 200, responseTime: 142, ipAddress: '192.168.1.146', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-088', timestamp: getPastTimestamp(88), endpoint: '/api/auth/login', method: 'POST', user: 'user006', requestData: { username: 'user006', password: '****' }, responseStatus: 200, responseTime: 167, ipAddress: '192.168.1.147', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-089', timestamp: getPastTimestamp(89), endpoint: '/api/auth/login', method: 'POST', user: 'user007', requestData: { username: 'user007', password: '****' }, responseStatus: 200, responseTime: 134, ipAddress: '192.168.1.148', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  { id: 'LOG-090', timestamp: getPastTimestamp(90), endpoint: '/api/auth/login', method: 'POST', user: 'user008', requestData: { username: 'user008', password: '****' }, responseStatus: 200, responseTime: 145, ipAddress: '192.168.1.149', userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', success: true },
+  
+  // 数据同步扩展
+  { id: 'LOG-091', timestamp: getPastTimestamp(91), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'realtime', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 45, ipAddress: '192.168.1.150', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-092', timestamp: getPastTimestamp(92), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'batch', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 1234, ipAddress: '192.168.1.151', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-093', timestamp: getPastTimestamp(93), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'incremental', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 234, ipAddress: '192.168.1.152', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-094', timestamp: getPastTimestamp(94), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'backup', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 892, ipAddress: '192.168.1.153', userAgent: 'System-Sync-Service/1.0', success: true },
+  { id: 'LOG-095', timestamp: getPastTimestamp(95), endpoint: '/api/data/sync', method: 'POST', user: 'system', requestData: { syncType: 'full', timestamp: getCurrentTimestamp() }, responseStatus: 200, responseTime: 1567, ipAddress: '192.168.1.154', userAgent: 'System-Sync-Service/1.0', success: true },
+  
+  // 传感器数据扩展
+  { id: 'LOG-096', timestamp: getPastTimestamp(96), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'TEMP-G-001', value: 23.1 }, responseStatus: 200, responseTime: 67, ipAddress: '192.168.1.155', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-097', timestamp: getPastTimestamp(97), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'HUM-G-001', value: 68.5 }, responseStatus: 200, responseTime: 71, ipAddress: '192.168.1.156', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-098', timestamp: getPastTimestamp(98), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'PRESS-G-001', value: 1014.78 }, responseStatus: 200, responseTime: 69, ipAddress: '192.168.1.157', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-099', timestamp: getPastTimestamp(99), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'MOTION-G-001', value: 0 }, responseStatus: 200, responseTime: 73, ipAddress: '192.168.1.158', userAgent: 'Sensor-System/2.1', success: true },
+  { id: 'LOG-100', timestamp: getPastTimestamp(100), endpoint: '/api/sensors/data', method: 'POST', user: 'sensor_system', requestData: { sensorId: 'LIGHT-G-001', value: 380 }, responseStatus: 200, responseTime: 68, ipAddress: '192.168.1.159', userAgent: 'Sensor-System/2.1', success: true }
 ];
 
 // 数据同步记录
@@ -2349,7 +2419,42 @@ export const dataSyncs: DataSync[] = [
   { id: 'SYNC-027', sourceSystem: '人力资源系统', targetSystem: '融合通信平台', dataType: '考勤数据', syncTime: getPastTimestamp(4), status: 'success', recordCount: 789, duration: 156 },
   { id: 'SYNC-028', sourceSystem: '人力资源系统', targetSystem: '融合通信平台', dataType: '培训记录', syncTime: getPastTimestamp(3), status: 'success', recordCount: 234, duration: 67 },
   { id: 'SYNC-029', sourceSystem: '人力资源系统', targetSystem: '融合通信平台', dataType: '绩效评估', syncTime: getPastTimestamp(2), status: 'success', recordCount: 123, duration: 45 },
-  { id: 'SYNC-030', sourceSystem: '人力资源系统', targetSystem: '融合通信平台', dataType: '薪资信息', syncTime: getPastTimestamp(1), status: 'success', recordCount: 345, duration: 78 }
+  { id: 'SYNC-030', sourceSystem: '人力资源系统', targetSystem: '融合通信平台', dataType: '薪资信息', syncTime: getPastTimestamp(1), status: 'success', recordCount: 345, duration: 78 },
+  
+  // G区系统数据同步
+  { id: 'SYNC-031', sourceSystem: '监控系统', targetSystem: '数据分析系统', dataType: '实时监控数据', syncTime: getPastTimestamp(35), status: 'success', recordCount: 456, duration: 189 },
+  { id: 'SYNC-032', sourceSystem: '传感器系统', targetSystem: '监控系统', dataType: '传感器数据', syncTime: getPastTimestamp(36), status: 'success', recordCount: 234, duration: 145 },
+  { id: 'SYNC-033', sourceSystem: '报警系统', targetSystem: '应急响应系统', dataType: '报警信息', syncTime: getPastTimestamp(37), status: 'success', recordCount: 12, duration: 23 },
+  { id: 'SYNC-034', sourceSystem: '通信系统', targetSystem: '调度系统', dataType: '通信记录', syncTime: getPastTimestamp(38), status: 'success', recordCount: 89, duration: 67 },
+  { id: 'SYNC-035', sourceSystem: '调度系统', targetSystem: '监控系统', dataType: '调度指令', syncTime: getPastTimestamp(39), status: 'success', recordCount: 34, duration: 45 },
+  
+  // H区系统数据同步
+  { id: 'SYNC-036', sourceSystem: '仓储管理系统', targetSystem: '物流系统', dataType: '仓储数据', syncTime: getPastTimestamp(40), status: 'success', recordCount: 567, duration: 234 },
+  { id: 'SYNC-037', sourceSystem: '物流系统', targetSystem: '配送系统', dataType: '物流信息', syncTime: getPastTimestamp(41), status: 'success', recordCount: 123, duration: 89 },
+  { id: 'SYNC-038', sourceSystem: '配送系统', targetSystem: '客户系统', dataType: '配送状态', syncTime: getPastTimestamp(42), status: 'success', recordCount: 78, duration: 56 },
+  { id: 'SYNC-039', sourceSystem: '客户系统', targetSystem: 'CRM系统', dataType: '客户反馈', syncTime: getPastTimestamp(43), status: 'success', recordCount: 45, duration: 34 },
+  { id: 'SYNC-040', sourceSystem: 'CRM系统', targetSystem: '分析系统', dataType: '客户数据', syncTime: getPastTimestamp(44), status: 'success', recordCount: 234, duration: 178 },
+  
+  // I区系统数据同步
+  { id: 'SYNC-041', sourceSystem: '办公系统', targetSystem: '人事系统', dataType: '员工信息', syncTime: getPastTimestamp(45), status: 'success', recordCount: 89, duration: 67 },
+  { id: 'SYNC-042', sourceSystem: '人事系统', targetSystem: '考勤系统', dataType: '考勤数据', syncTime: getPastTimestamp(46), status: 'success', recordCount: 456, duration: 123 },
+  { id: 'SYNC-043', sourceSystem: '考勤系统', targetSystem: '薪资系统', dataType: '工时统计', syncTime: getPastTimestamp(47), status: 'success', recordCount: 234, duration: 89 },
+  { id: 'SYNC-044', sourceSystem: '薪资系统', targetSystem: '财务系统', dataType: '薪资数据', syncTime: getPastTimestamp(48), status: 'success', recordCount: 123, duration: 67 },
+  { id: 'SYNC-045', sourceSystem: '财务系统', targetSystem: 'ERP系统', dataType: '财务数据', syncTime: getPastTimestamp(49), status: 'success', recordCount: 345, duration: 234 },
+  
+  // J区系统数据同步
+  { id: 'SYNC-046', sourceSystem: '会议系统', targetSystem: '文档系统', dataType: '会议记录', syncTime: getPastTimestamp(50), status: 'success', recordCount: 23, duration: 34 },
+  { id: 'SYNC-047', sourceSystem: '文档系统', targetSystem: '知识库系统', dataType: '文档资料', syncTime: getPastTimestamp(51), status: 'success', recordCount: 67, duration: 89 },
+  { id: 'SYNC-048', sourceSystem: '知识库系统', targetSystem: '培训系统', dataType: '培训资料', syncTime: getPastTimestamp(52), status: 'success', recordCount: 45, duration: 56 },
+  { id: 'SYNC-049', sourceSystem: '培训系统', targetSystem: '评估系统', dataType: '培训记录', syncTime: getPastTimestamp(53), status: 'success', recordCount: 34, duration: 45 },
+  { id: 'SYNC-050', sourceSystem: '评估系统', targetSystem: '人事系统', dataType: '评估结果', syncTime: getPastTimestamp(54), status: 'success', recordCount: 78, duration: 67 },
+  
+  // 更多系统间数据同步
+  { id: 'SYNC-051', sourceSystem: '质量管理系统', targetSystem: '生产系统', dataType: '质量标准', syncTime: getPastTimestamp(55), status: 'success', recordCount: 123, duration: 89 },
+  { id: 'SYNC-052', sourceSystem: '生产系统', targetSystem: '质量管理系统', dataType: '质量检测', syncTime: getPastTimestamp(56), status: 'success', recordCount: 234, duration: 145 },
+  { id: 'SYNC-053', sourceSystem: '设备管理系统', targetSystem: '维护系统', dataType: '设备状态', syncTime: getPastTimestamp(57), status: 'success', recordCount: 89, duration: 67 },
+  { id: 'SYNC-054', sourceSystem: '维护系统', targetSystem: '备件系统', dataType: '维护计划', syncTime: getPastTimestamp(58), status: 'success', recordCount: 56, duration: 45 },
+  { id: 'SYNC-055', sourceSystem: '备件系统', targetSystem: '采购系统', dataType: '备件需求', syncTime: getPastTimestamp(59), status: 'success', recordCount: 34, duration: 34 }
 ];
 
 // 5G卡数据
@@ -2394,7 +2499,35 @@ export const fiveGCards: FiveGCard[] = [
   { id: '5G-027', cardNumber: '89860012345678901260', iccid: '89860012345678901260', status: 'active', activationDate: '2025-01-01', dataUsage: 3.9, dataLimit: 10, signalStrength: 76, location: 'F区监控点2', deviceId: 'dev027', lastUpdate: getCurrentTimestamp() },
   { id: '5G-028', cardNumber: '89860012345678901261', iccid: '89860012345678901261', status: 'active', activationDate: '2025-01-01', dataUsage: 1.5, dataLimit: 10, signalStrength: 95, location: 'F区监控点3', deviceId: 'dev028', lastUpdate: getCurrentTimestamp() },
   { id: '5G-029', cardNumber: '89860012345678901262', iccid: '89860012345678901262', status: 'active', activationDate: '2025-01-01', dataUsage: 2.6, dataLimit: 10, signalStrength: 87, location: 'F区监控点4', deviceId: 'dev029', lastUpdate: getCurrentTimestamp() },
-  { id: '5G-030', cardNumber: '89860012345678901263', iccid: '89860012345678901263', status: 'active', activationDate: '2025-01-01', dataUsage: 0.6, dataLimit: 10, signalStrength: 99, location: 'F区监控点5', deviceId: 'dev030', lastUpdate: getCurrentTimestamp() }
+  { id: '5G-030', cardNumber: '89860012345678901263', iccid: '89860012345678901263', status: 'active', activationDate: '2025-01-01', dataUsage: 0.6, dataLimit: 10, signalStrength: 99, location: 'F区监控点5', deviceId: 'dev030', lastUpdate: getCurrentTimestamp() },
+  
+  // G区设备
+  { id: '5G-031', cardNumber: '89860012345678901264', iccid: '89860012345678901264', status: 'active', activationDate: '2025-01-01', dataUsage: 2.8, dataLimit: 10, signalStrength: 91, location: 'G区监控点1', deviceId: 'dev031', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-032', cardNumber: '89860012345678901265', iccid: '89860012345678901265', status: 'active', activationDate: '2025-01-01', dataUsage: 1.9, dataLimit: 10, signalStrength: 94, location: 'G区监控点2', deviceId: 'dev032', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-033', cardNumber: '89860012345678901266', iccid: '89860012345678901266', status: 'active', activationDate: '2025-01-01', dataUsage: 3.4, dataLimit: 10, signalStrength: 82, location: 'G区监控点3', deviceId: 'dev033', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-034', cardNumber: '89860012345678901267', iccid: '89860012345678901267', status: 'active', activationDate: '2025-01-01', dataUsage: 1.1, dataLimit: 10, signalStrength: 97, location: 'G区监控点4', deviceId: 'dev034', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-035', cardNumber: '89860012345678901268', iccid: '89860012345678901268', status: 'active', activationDate: '2025-01-01', dataUsage: 2.3, dataLimit: 10, signalStrength: 88, location: 'G区监控点5', deviceId: 'dev035', lastUpdate: getCurrentTimestamp() },
+  
+  // H区设备
+  { id: '5G-036', cardNumber: '89860012345678901269', iccid: '89860012345678901269', status: 'active', activationDate: '2025-01-01', dataUsage: 1.7, dataLimit: 10, signalStrength: 96, location: 'H区监控点1', deviceId: 'dev036', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-037', cardNumber: '89860012345678901270', iccid: '89860012345678901270', status: 'active', activationDate: '2025-01-01', dataUsage: 3.7, dataLimit: 10, signalStrength: 79, location: 'H区监控点2', deviceId: 'dev037', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-038', cardNumber: '89860012345678901271', iccid: '89860012345678901271', status: 'active', activationDate: '2025-01-01', dataUsage: 2.1, dataLimit: 10, signalStrength: 90, location: 'H区监控点3', deviceId: 'dev038', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-039', cardNumber: '89860012345678901272', iccid: '89860012345678901272', status: 'active', activationDate: '2025-01-01', dataUsage: 0.8, dataLimit: 10, signalStrength: 98, location: 'H区监控点4', deviceId: 'dev039', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-040', cardNumber: '89860012345678901273', iccid: '89860012345678901273', status: 'active', activationDate: '2025-01-01', dataUsage: 2.9, dataLimit: 10, signalStrength: 85, location: 'H区监控点5', deviceId: 'dev040', lastUpdate: getCurrentTimestamp() },
+  
+  // I区设备
+  { id: '5G-041', cardNumber: '89860012345678901274', iccid: '89860012345678901274', status: 'active', activationDate: '2025-01-01', dataUsage: 1.4, dataLimit: 10, signalStrength: 93, location: 'I区监控点1', deviceId: 'dev041', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-042', cardNumber: '89860012345678901275', iccid: '89860012345678901275', status: 'active', activationDate: '2025-01-01', dataUsage: 3.2, dataLimit: 10, signalStrength: 81, location: 'I区监控点2', deviceId: 'dev042', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-043', cardNumber: '89860012345678901276', iccid: '89860012345678901276', status: 'active', activationDate: '2025-01-01', dataUsage: 2.5, dataLimit: 10, signalStrength: 87, location: 'I区监控点3', deviceId: 'dev043', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-044', cardNumber: '89860012345678901277', iccid: '89860012345678901277', status: 'active', activationDate: '2025-01-01', dataUsage: 1.6, dataLimit: 10, signalStrength: 95, location: 'I区监控点4', deviceId: 'dev044', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-045', cardNumber: '89860012345678901278', iccid: '89860012345678901278', status: 'active', activationDate: '2025-01-01', dataUsage: 3.8, dataLimit: 10, signalStrength: 78, location: 'I区监控点5', deviceId: 'dev045', lastUpdate: getCurrentTimestamp() },
+  
+  // J区设备
+  { id: '5G-046', cardNumber: '89860012345678901279', iccid: '89860012345678901279', status: 'active', activationDate: '2025-01-01', dataUsage: 2.0, dataLimit: 10, signalStrength: 92, location: 'J区监控点1', deviceId: 'dev046', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-047', cardNumber: '89860012345678901280', iccid: '89860012345678901280', status: 'active', activationDate: '2025-01-01', dataUsage: 1.3, dataLimit: 10, signalStrength: 96, location: 'J区监控点2', deviceId: 'dev047', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-048', cardNumber: '89860012345678901281', iccid: '89860012345678901281', status: 'active', activationDate: '2025-01-01', dataUsage: 3.1, dataLimit: 10, signalStrength: 83, location: 'J区监控点3', deviceId: 'dev048', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-049', cardNumber: '89860012345678901282', iccid: '89860012345678901282', status: 'active', activationDate: '2025-01-01', dataUsage: 2.7, dataLimit: 10, signalStrength: 89, location: 'J区监控点4', deviceId: 'dev049', lastUpdate: getCurrentTimestamp() },
+  { id: '5G-050', cardNumber: '89860012345678901283', iccid: '89860012345678901283', status: 'active', activationDate: '2025-01-01', dataUsage: 0.9, dataLimit: 10, signalStrength: 99, location: 'J区监控点5', deviceId: 'dev050', lastUpdate: getCurrentTimestamp() }
 ];
 
 // 安全认证记录
@@ -2453,7 +2586,49 @@ export const securityAuths: SecurityAuth[] = [
   { id: 'AUTH-037', userId: 'unknown', userName: 'unknown', authType: 'primary', authMethod: 'password', status: 'failed', timestamp: getPastTimestamp(37), ipAddress: '192.168.1.122', deviceInfo: 'Unknown-Device', location: '山东济南' },
   { id: 'AUTH-038', userId: 'unknown', userName: 'unknown', authType: 'primary', authMethod: 'password', status: 'failed', timestamp: getPastTimestamp(38), ipAddress: '192.168.1.123', deviceInfo: 'Unknown-Device', location: '山东济南' },
   { id: 'AUTH-039', userId: 'unknown', userName: 'unknown', authType: 'primary', authMethod: 'password', status: 'failed', timestamp: getPastTimestamp(39), ipAddress: '192.168.1.124', deviceInfo: 'Unknown-Device', location: '山东济南' },
-  { id: 'AUTH-040', userId: 'unknown', userName: 'unknown', authType: 'primary', authMethod: 'password', status: 'failed', timestamp: getPastTimestamp(40), ipAddress: '192.168.1.125', deviceInfo: 'Unknown-Device', location: '山东济南' }
+  { id: 'AUTH-040', userId: 'unknown', userName: 'unknown', authType: 'primary', authMethod: 'password', status: 'failed', timestamp: getPastTimestamp(40), ipAddress: '192.168.1.125', deviceInfo: 'Unknown-Device', location: '山东济南' },
+  
+  // G区用户认证记录
+  { id: 'AUTH-041', userId: 'user009', userName: 'operator9', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(41), ipAddress: '192.168.1.150', deviceInfo: 'Windows - Chrome 120.0', location: '济南市长清区' },
+  { id: 'AUTH-042', userId: 'user010', userName: 'operator10', authType: 'primary', authMethod: 'sms', status: 'success', timestamp: getPastTimestamp(42), ipAddress: '192.168.1.151', deviceInfo: 'iOS - Safari 17.0', location: '济南市章丘区' },
+  { id: 'AUTH-043', userId: 'user011', userName: 'operator11', authType: 'secondary', authMethod: 'fingerprint', status: 'success', timestamp: getPastTimestamp(43), ipAddress: '192.168.1.152', deviceInfo: 'Android - Chrome 120.0', location: '济南市济阳区' },
+  { id: 'AUTH-044', userId: 'user012', userName: 'operator12', authType: 'biometric', authMethod: 'face', status: 'success', timestamp: getPastTimestamp(44), ipAddress: '192.168.1.153', deviceInfo: 'iOS - Safari 17.0', location: '济南市莱芜区' },
+  { id: 'AUTH-045', userId: 'user013', userName: 'operator13', authType: 'biometric', authMethod: 'biometric', status: 'success', timestamp: getPastTimestamp(45), ipAddress: '192.168.1.154', deviceInfo: 'Android - Chrome 120.0', location: '济南市钢城区' },
+  
+  // H区用户认证记录
+  { id: 'AUTH-046', userId: 'user014', userName: 'operator14', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(46), ipAddress: '192.168.1.155', deviceInfo: 'Windows - Edge 120.0', location: '济南市平阴县' },
+  { id: 'AUTH-047', userId: 'user015', userName: 'operator15', authType: 'primary', authMethod: 'sms', status: 'success', timestamp: getPastTimestamp(47), ipAddress: '192.168.1.156', deviceInfo: 'iOS - Safari 17.0', location: '济南市商河县' },
+  { id: 'AUTH-048', userId: 'user016', userName: 'operator16', authType: 'secondary', authMethod: 'fingerprint', status: 'success', timestamp: getPastTimestamp(48), ipAddress: '192.168.1.157', deviceInfo: 'Android - Chrome 120.0', location: '济南市高新区' },
+  { id: 'AUTH-049', userId: 'user017', userName: 'operator17', authType: 'biometric', authMethod: 'face', status: 'success', timestamp: getPastTimestamp(49), ipAddress: '192.168.1.158', deviceInfo: 'iOS - Safari 17.0', location: '济南市南山区' },
+  { id: 'AUTH-050', userId: 'user018', userName: 'operator18', authType: 'biometric', authMethod: 'biometric', status: 'success', timestamp: getPastTimestamp(50), ipAddress: '192.168.1.159', deviceInfo: 'Android - Chrome 120.0', location: '济南市先行区' },
+  
+  // I区用户认证记录
+  { id: 'AUTH-051', userId: 'user019', userName: 'operator19', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(51), ipAddress: '192.168.1.160', deviceInfo: 'Windows - Chrome 120.0', location: '济南市起步区' },
+  { id: 'AUTH-052', userId: 'user020', userName: 'operator20', authType: 'primary', authMethod: 'sms', status: 'success', timestamp: getPastTimestamp(52), ipAddress: '192.168.1.161', deviceInfo: 'iOS - Safari 17.0', location: '济南市临港区' },
+  { id: 'AUTH-053', userId: 'user021', userName: 'operator21', authType: 'secondary', authMethod: 'fingerprint', status: 'success', timestamp: getPastTimestamp(53), ipAddress: '192.168.1.162', deviceInfo: 'Android - Chrome 120.0', location: '济南市空港区' },
+  { id: 'AUTH-054', userId: 'user022', userName: 'operator22', authType: 'biometric', authMethod: 'face', status: 'success', timestamp: getPastTimestamp(54), ipAddress: '192.168.1.163', deviceInfo: 'iOS - Safari 17.0', location: '济南市陆港区' },
+  { id: 'AUTH-055', userId: 'user023', userName: 'operator23', authType: 'biometric', authMethod: 'biometric', status: 'success', timestamp: getPastTimestamp(55), ipAddress: '192.168.1.164', deviceInfo: 'Android - Chrome 120.0', location: '济南市水港区' },
+  
+  // J区用户认证记录
+  { id: 'AUTH-056', userId: 'user024', userName: 'operator24', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(56), ipAddress: '192.168.1.165', deviceInfo: 'Windows - Edge 120.0', location: '济南市保税区' },
+  { id: 'AUTH-057', userId: 'user025', userName: 'operator25', authType: 'primary', authMethod: 'sms', status: 'success', timestamp: getPastTimestamp(57), ipAddress: '192.168.1.166', deviceInfo: 'iOS - Safari 17.0', location: '济南市综保区' },
+  { id: 'AUTH-058', userId: 'user026', userName: 'operator26', authType: 'secondary', authMethod: 'fingerprint', status: 'success', timestamp: getPastTimestamp(58), ipAddress: '192.168.1.167', deviceInfo: 'Android - Chrome 120.0', location: '济南市自贸区' },
+  { id: 'AUTH-059', userId: 'user027', userName: 'operator27', authType: 'biometric', authMethod: 'face', status: 'success', timestamp: getPastTimestamp(59), ipAddress: '192.168.1.168', deviceInfo: 'iOS - Safari 17.0', location: '济南市创新区' },
+  { id: 'AUTH-060', userId: 'user028', userName: 'operator28', authType: 'biometric', authMethod: 'biometric', status: 'success', timestamp: getPastTimestamp(60), ipAddress: '192.168.1.169', deviceInfo: 'Android - Chrome 120.0', location: '济南市智慧区' },
+  
+  // 系统管理员认证记录
+  { id: 'AUTH-061', userId: 'admin001', userName: 'system_admin1', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(61), ipAddress: '192.168.1.170', deviceInfo: 'Windows - Chrome 120.0', location: '济南市总部' },
+  { id: 'AUTH-062', userId: 'admin002', userName: 'system_admin2', authType: 'secondary', authMethod: 'fingerprint', status: 'success', timestamp: getPastTimestamp(62), ipAddress: '192.168.1.171', deviceInfo: 'Windows - Edge 120.0', location: '济南市总部' },
+  { id: 'AUTH-063', userId: 'admin003', userName: 'system_admin3', authType: 'biometric', authMethod: 'face', status: 'success', timestamp: getPastTimestamp(63), ipAddress: '192.168.1.172', deviceInfo: 'macOS - Safari 17.0', location: '济南市总部' },
+  { id: 'AUTH-064', userId: 'admin004', userName: 'system_admin4', authType: 'biometric', authMethod: 'biometric', status: 'success', timestamp: getPastTimestamp(64), ipAddress: '192.168.1.173', deviceInfo: 'Windows - Chrome 120.0', location: '济南市总部' },
+  { id: 'AUTH-065', userId: 'admin005', userName: 'system_admin5', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(65), ipAddress: '192.168.1.174', deviceInfo: 'Windows - Edge 120.0', location: '济南市总部' },
+  
+  // 设备认证记录
+  { id: 'AUTH-066', userId: 'dev031', userName: 'camera_g001', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(66), ipAddress: '192.168.1.175', deviceInfo: 'Camera-System/3.1', location: 'G区监控点1' },
+  { id: 'AUTH-067', userId: 'dev032', userName: 'sensor_g001', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(67), ipAddress: '192.168.1.176', deviceInfo: 'Sensor-System/2.1', location: 'G区监控点2' },
+  { id: 'AUTH-068', userId: 'dev033', userName: 'phone_g001', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(68), ipAddress: '192.168.1.177', deviceInfo: 'Phone-System/1.5', location: 'G区监控点3' },
+  { id: 'AUTH-069', userId: 'dev034', userName: 'controller_g001', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(69), ipAddress: '192.168.1.178', deviceInfo: 'Controller-System/2.0', location: 'G区监控点4' },
+  { id: 'AUTH-070', userId: 'dev035', userName: 'camera_g002', authType: 'primary', authMethod: 'password', status: 'success', timestamp: getPastTimestamp(70), ipAddress: '192.168.1.179', deviceInfo: 'Camera-System/3.1', location: 'G区监控点5' }
 ];
 
 // 网络安全状态
@@ -2549,7 +2724,35 @@ export const sensorData: SensorData[] = [
   { id: 'SENSOR-032', sensorId: 'HUM-F-001', sensorType: 'humidity', value: 58.2, unit: '%', timestamp: getCurrentTimestamp(), location: 'F区实验室1', accuracy: 0.5, batteryLevel: 93, signalStrength: 92 },
   { id: 'SENSOR-033', sensorId: 'PRESS-F-001', sensorType: 'pressure', value: 1015.67, unit: 'hPa', timestamp: getCurrentTimestamp(), location: 'F区实验室1', accuracy: 0.01, batteryLevel: 90, signalStrength: 91 },
   { id: 'SENSOR-034', sensorId: 'LIGHT-F-001', sensorType: 'light', value: 750, unit: 'lux', timestamp: getCurrentTimestamp(), location: 'F区实验室1', accuracy: 10, batteryLevel: 88, signalStrength: 89 },
-  { id: 'SENSOR-035', sensorId: 'SOUND-F-001', sensorType: 'sound', value: 35, unit: 'dB', timestamp: getCurrentTimestamp(), location: 'F区实验室1', accuracy: 1, batteryLevel: 85, signalStrength: 87 }
+  { id: 'SENSOR-035', sensorId: 'SOUND-F-001', sensorType: 'sound', value: 35, unit: 'dB', timestamp: getCurrentTimestamp(), location: 'F区实验室1', accuracy: 1, batteryLevel: 85, signalStrength: 87 },
+  
+  // G区传感器
+  { id: 'SENSOR-036', sensorId: 'TEMP-G-001', sensorType: 'temperature', value: 23.1, unit: '°C', timestamp: getCurrentTimestamp(), location: 'G区车间1', accuracy: 0.1, batteryLevel: 88, signalStrength: 91 },
+  { id: 'SENSOR-037', sensorId: 'HUM-G-001', sensorType: 'humidity', value: 68.5, unit: '%', timestamp: getCurrentTimestamp(), location: 'G区车间1', accuracy: 0.5, batteryLevel: 92, signalStrength: 88 },
+  { id: 'SENSOR-038', sensorId: 'PRESS-G-001', sensorType: 'pressure', value: 1014.78, unit: 'hPa', timestamp: getCurrentTimestamp(), location: 'G区车间1', accuracy: 0.01, batteryLevel: 85, signalStrength: 87 },
+  { id: 'SENSOR-039', sensorId: 'MOTION-G-001', sensorType: 'motion', value: 0, unit: 'detected', timestamp: getCurrentTimestamp(), location: 'G区车间1', accuracy: 1, batteryLevel: 95, signalStrength: 92 },
+  { id: 'SENSOR-040', sensorId: 'LIGHT-G-001', sensorType: 'light', value: 380, unit: 'lux', timestamp: getCurrentTimestamp(), location: 'G区车间1', accuracy: 10, batteryLevel: 90, signalStrength: 89 },
+  
+  // H区传感器
+  { id: 'SENSOR-041', sensorId: 'TEMP-H-001', sensorType: 'temperature', value: 21.8, unit: '°C', timestamp: getCurrentTimestamp(), location: 'H区仓库1', accuracy: 0.1, batteryLevel: 87, signalStrength: 85 },
+  { id: 'SENSOR-042', sensorId: 'HUM-H-001', sensorType: 'humidity', value: 62.3, unit: '%', timestamp: getCurrentTimestamp(), location: 'H区仓库1', accuracy: 0.5, batteryLevel: 91, signalStrength: 88 },
+  { id: 'SENSOR-043', sensorId: 'PRESS-H-001', sensorType: 'pressure', value: 1013.45, unit: 'hPa', timestamp: getCurrentTimestamp(), location: 'H区仓库1', accuracy: 0.01, batteryLevel: 83, signalStrength: 86 },
+  { id: 'SENSOR-044', sensorId: 'MOTION-H-001', sensorType: 'motion', value: 1, unit: 'detected', timestamp: getCurrentTimestamp(), location: 'H区仓库1', accuracy: 1, batteryLevel: 94, signalStrength: 93 },
+  { id: 'SENSOR-045', sensorId: 'LIGHT-H-001', sensorType: 'light', value: 420, unit: 'lux', timestamp: getCurrentTimestamp(), location: 'H区仓库1', accuracy: 10, batteryLevel: 89, signalStrength: 87 },
+  
+  // I区传感器
+  { id: 'SENSOR-046', sensorId: 'TEMP-I-001', sensorType: 'temperature', value: 24.2, unit: '°C', timestamp: getCurrentTimestamp(), location: 'I区办公室1', accuracy: 0.1, batteryLevel: 93, signalStrength: 90 },
+  { id: 'SENSOR-047', sensorId: 'HUM-I-001', sensorType: 'humidity', value: 55.8, unit: '%', timestamp: getCurrentTimestamp(), location: 'I区办公室1', accuracy: 0.5, batteryLevel: 88, signalStrength: 89 },
+  { id: 'SENSOR-048', sensorId: 'PRESS-I-001', sensorType: 'pressure', value: 1012.89, unit: 'hPa', timestamp: getCurrentTimestamp(), location: 'I区办公室1', accuracy: 0.01, batteryLevel: 86, signalStrength: 88 },
+  { id: 'SENSOR-049', sensorId: 'MOTION-I-001', sensorType: 'motion', value: 1, unit: 'detected', timestamp: getCurrentTimestamp(), location: 'I区办公室1', accuracy: 1, batteryLevel: 96, signalStrength: 94 },
+  { id: 'SENSOR-050', sensorId: 'LIGHT-I-001', sensorType: 'light', value: 580, unit: 'lux', timestamp: getCurrentTimestamp(), location: 'I区办公室1', accuracy: 10, batteryLevel: 92, signalStrength: 91 },
+  
+  // J区传感器
+  { id: 'SENSOR-051', sensorId: 'TEMP-J-001', sensorType: 'temperature', value: 22.7, unit: '°C', timestamp: getCurrentTimestamp(), location: 'J区会议室1', accuracy: 0.1, batteryLevel: 89, signalStrength: 86 },
+  { id: 'SENSOR-052', sensorId: 'HUM-J-001', sensorType: 'humidity', value: 59.4, unit: '%', timestamp: getCurrentTimestamp(), location: 'J区会议室1', accuracy: 0.5, batteryLevel: 85, signalStrength: 87 },
+  { id: 'SENSOR-053', sensorId: 'PRESS-J-001', sensorType: 'pressure', value: 1014.23, unit: 'hPa', timestamp: getCurrentTimestamp(), location: 'J区会议室1', accuracy: 0.01, batteryLevel: 84, signalStrength: 85 },
+  { id: 'SENSOR-054', sensorId: 'MOTION-J-001', sensorType: 'motion', value: 0, unit: 'detected', timestamp: getCurrentTimestamp(), location: 'J区会议室1', accuracy: 1, batteryLevel: 97, signalStrength: 95 },
+  { id: 'SENSOR-055', sensorId: 'LIGHT-J-001', sensorType: 'light', value: 650, unit: 'lux', timestamp: getCurrentTimestamp(), location: 'J区会议室1', accuracy: 10, batteryLevel: 91, signalStrength: 90 }
 ];
 
 // 传输日志
@@ -2608,7 +2811,49 @@ export const transmissionLogs: TransmissionLog[] = [
   { id: 'TRANS-037', deviceId: 'sensor_system', dataType: 'sensor_batch', transmissionTime: getPastTimestamp(36), status: 'success', dataSize: 4096, duration: 156, retryCount: 0 },
   { id: 'TRANS-038', deviceId: 'alert_system', dataType: 'alert_data', transmissionTime: getPastTimestamp(37), status: 'success', dataSize: 512, duration: 34, retryCount: 0 },
   { id: 'TRANS-039', deviceId: 'report_system', dataType: 'report_data', transmissionTime: getPastTimestamp(38), status: 'success', dataSize: 16384, duration: 456, retryCount: 0 },
-  { id: 'TRANS-040', deviceId: 'backup_system', dataType: 'backup_data', transmissionTime: getPastTimestamp(39), status: 'success', dataSize: 32768, duration: 789, retryCount: 0 }
+  { id: 'TRANS-040', deviceId: 'backup_system', dataType: 'backup_data', transmissionTime: getPastTimestamp(39), status: 'success', dataSize: 32768, duration: 789, retryCount: 0 },
+  
+  // G区设备传输日志
+  { id: 'TRANS-041', deviceId: 'dev031', dataType: 'status', transmissionTime: getPastTimestamp(40), status: 'success', dataSize: 1024, duration: 46, retryCount: 0 },
+  { id: 'TRANS-042', deviceId: 'dev032', dataType: 'sensor', transmissionTime: getPastTimestamp(41), status: 'success', dataSize: 512, duration: 35, retryCount: 0 },
+  { id: 'TRANS-043', deviceId: 'dev033', dataType: 'audio', transmissionTime: getPastTimestamp(42), status: 'success', dataSize: 2048, duration: 68, retryCount: 0 },
+  { id: 'TRANS-044', deviceId: 'dev034', dataType: 'video', transmissionTime: getPastTimestamp(43), status: 'success', dataSize: 6144, duration: 145, retryCount: 0 },
+  { id: 'TRANS-045', deviceId: 'dev035', dataType: 'status', transmissionTime: getPastTimestamp(44), status: 'success', dataSize: 1024, duration: 43, retryCount: 0 },
+  
+  // H区设备传输日志
+  { id: 'TRANS-046', deviceId: 'dev036', dataType: 'sensor', transmissionTime: getPastTimestamp(45), status: 'success', dataSize: 768, duration: 58, retryCount: 0 },
+  { id: 'TRANS-047', deviceId: 'dev037', dataType: 'audio', transmissionTime: getPastTimestamp(46), status: 'success', dataSize: 1792, duration: 79, retryCount: 0 },
+  { id: 'TRANS-048', deviceId: 'dev038', dataType: 'video', transmissionTime: getPastTimestamp(47), status: 'success', dataSize: 7168, duration: 167, retryCount: 0 },
+  { id: 'TRANS-049', deviceId: 'dev039', dataType: 'status', transmissionTime: getPastTimestamp(48), status: 'success', dataSize: 1024, duration: 52, retryCount: 0 },
+  { id: 'TRANS-050', deviceId: 'dev040', dataType: 'sensor', transmissionTime: getPastTimestamp(49), status: 'success', dataSize: 640, duration: 42, retryCount: 0 },
+  
+  // I区设备传输日志
+  { id: 'TRANS-051', deviceId: 'dev041', dataType: 'video', transmissionTime: getPastTimestamp(50), status: 'success', dataSize: 4608, duration: 112, retryCount: 0 },
+  { id: 'TRANS-052', deviceId: 'dev042', dataType: 'audio', transmissionTime: getPastTimestamp(51), status: 'success', dataSize: 2304, duration: 95, retryCount: 0 },
+  { id: 'TRANS-053', deviceId: 'dev043', dataType: 'sensor', transmissionTime: getPastTimestamp(52), status: 'success', dataSize: 896, duration: 58, retryCount: 0 },
+  { id: 'TRANS-054', deviceId: 'dev044', dataType: 'status', transmissionTime: getPastTimestamp(53), status: 'success', dataSize: 1024, duration: 48, retryCount: 0 },
+  { id: 'TRANS-055', deviceId: 'dev045', dataType: 'video', transmissionTime: getPastTimestamp(54), status: 'success', dataSize: 5632, duration: 134, retryCount: 0 },
+  
+  // J区设备传输日志
+  { id: 'TRANS-056', deviceId: 'dev046', dataType: 'sensor', transmissionTime: getPastTimestamp(55), status: 'success', dataSize: 320, duration: 26, retryCount: 0 },
+  { id: 'TRANS-057', deviceId: 'dev047', dataType: 'audio', transmissionTime: getPastTimestamp(56), status: 'success', dataSize: 1024, duration: 53, retryCount: 0 },
+  { id: 'TRANS-058', deviceId: 'dev048', dataType: 'video', transmissionTime: getPastTimestamp(57), status: 'success', dataSize: 4096, duration: 98, retryCount: 0 },
+  { id: 'TRANS-059', deviceId: 'dev049', dataType: 'status', transmissionTime: getPastTimestamp(58), status: 'success', dataSize: 1024, duration: 49, retryCount: 0 },
+  { id: 'TRANS-060', deviceId: 'dev050', dataType: 'sensor', transmissionTime: getPastTimestamp(59), status: 'success', dataSize: 384, duration: 31, retryCount: 0 },
+  
+  // 新增传感器数据传输日志
+  { id: 'TRANS-061', deviceId: 'TEMP-G-001', dataType: 'temperature', transmissionTime: getPastTimestamp(60), status: 'success', dataSize: 64, duration: 12, retryCount: 0 },
+  { id: 'TRANS-062', deviceId: 'HUM-G-001', dataType: 'humidity', transmissionTime: getPastTimestamp(61), status: 'success', dataSize: 64, duration: 11, retryCount: 0 },
+  { id: 'TRANS-063', deviceId: 'PRESS-G-001', dataType: 'pressure', transmissionTime: getPastTimestamp(62), status: 'success', dataSize: 64, duration: 13, retryCount: 0 },
+  { id: 'TRANS-064', deviceId: 'MOTION-G-001', dataType: 'motion', transmissionTime: getPastTimestamp(63), status: 'success', dataSize: 32, duration: 8, retryCount: 0 },
+  { id: 'TRANS-065', deviceId: 'LIGHT-G-001', dataType: 'light', transmissionTime: getPastTimestamp(64), status: 'success', dataSize: 64, duration: 10, retryCount: 0 },
+  
+  // 更多系统数据传输日志
+  { id: 'TRANS-066', deviceId: 'monitoring_system', dataType: 'monitor_data', transmissionTime: getPastTimestamp(65), status: 'success', dataSize: 2048, duration: 89, retryCount: 0 },
+  { id: 'TRANS-067', deviceId: 'analytics_system', dataType: 'analytics_data', transmissionTime: getPastTimestamp(66), status: 'success', dataSize: 4096, duration: 123, retryCount: 0 },
+  { id: 'TRANS-068', deviceId: 'notification_system', dataType: 'notification_data', transmissionTime: getPastTimestamp(67), status: 'success', dataSize: 256, duration: 15, retryCount: 0 },
+  { id: 'TRANS-069', deviceId: 'logging_system', dataType: 'log_data', transmissionTime: getPastTimestamp(68), status: 'success', dataSize: 1024, duration: 45, retryCount: 0 },
+  { id: 'TRANS-070', deviceId: 'metrics_system', dataType: 'metrics_data', transmissionTime: getPastTimestamp(69), status: 'success', dataSize: 512, duration: 23, retryCount: 0 }
 ];
 
 // 完整的图表数据，包含原有和新增数据
