@@ -18,6 +18,8 @@ import {
   LogoutOutlined,
   SettingOutlined as SettingIcon,
   BellOutlined,
+  ApiOutlined,
+  RadarChartOutlined,
 } from '@ant-design/icons';
 import Dashboard from './pages/Dashboard';
 import CommandDispatch from './pages/CommandDispatch';
@@ -30,6 +32,9 @@ import OrganizationManagement from './pages/OrganizationManagement';
 import InspectionManagement from './pages/InspectionManagement';
 import ERPPlatform from './pages/ERPPlatform';
 import SystemSettings from './pages/SystemSettings';
+import ApiInterface from './pages/ApiInterface';
+import FiveGSecurity from './pages/FiveGSecurity';
+import SensorTransmission from './pages/SensorTransmission';
 import Login from './pages/Login';
 
 const { Header, Sider, Content } = Layout;
@@ -86,11 +91,25 @@ const menuItems = [
     label: '组织架构',
   },
   {
+    key: '/api-interface',
+    icon: <ApiOutlined />,
+    label: '标准化接口',
+  },
+  {
+    key: '/fiveg-security',
+    icon: <SafetyOutlined />,
+    label: '5G网络安全',
+  },
+  {
+    key: '/sensor-transmission',
+    icon: <RadarChartOutlined />,
+    label: '感知传输',
+  },
+  {
     key: '/system-settings',
     icon: <SettingOutlined />,
     label: '系统设置',
   },
-  
 ];
 
 // 权限控制组件
@@ -304,6 +323,9 @@ const AppLayout: React.FC = () => {
             <Route path="/inspection-management" element={<InspectionManagement />} />
             <Route path="/organization" element={<OrganizationManagement />} />
             <Route path="/erp-platform" element={<ERPPlatform />} />
+            <Route path="/api-interface" element={<ApiInterface />} />
+            <Route path="/fiveg-security" element={<FiveGSecurity />} />
+            <Route path="/sensor-transmission" element={<SensorTransmission />} />
             <Route path="/system-settings" element={<SystemSettings />} />
             <Route path="*" element={<Dashboard />} />
           </Routes>

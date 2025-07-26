@@ -74,7 +74,7 @@ import {
   PauseCircleOutlined
 } from '@ant-design/icons';
 import { Pie, Line, Area, Rose, Column } from '@ant-design/plots';
-import { statistics, devices, safetyEvents } from '../data/mockData';
+import { statistics, devices, safetyEvents, apiLogs, fiveGCards, sensorData } from '../data/mockData';
 
 const { Title, Text, Paragraph } = Typography;
 const { Option } = Select;
@@ -240,6 +240,30 @@ const Dashboard: React.FC = () => {
       color: '#722ed1',
       icon: <RadarChartOutlined />,
       description: '实时数据分析处理'
+    },
+    {
+      title: '标准化接口',
+      count: apiLogs.length,
+      status: 'active',
+      color: '#13c2c2',
+      icon: <ApiOutlined />,
+      description: '接口日志和同步管理'
+    },
+    {
+      title: '5G网络安全',
+      count: fiveGCards.length,
+      status: 'active',
+      color: '#faad14',
+      icon: <SafetyOutlined />,
+      description: '5G卡和安全认证管理'
+    },
+    {
+      title: '感知传输',
+      count: sensorData.length,
+      status: 'active',
+      color: '#eb2f96',
+      icon: <RadarChartOutlined />,
+      description: '传感器数据和传输监控'
     }
   ];
 
